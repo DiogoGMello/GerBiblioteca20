@@ -11,26 +11,16 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class TelaCadExemplar extends Application {
-
-    Stage window;
-
+public class TelaCadExemplar{
     Label lblPesquisa, lblPesqTitulo, lblPesqSubtitulo, lblCadastro, lblID, lblLivroID, lblTitulo,
             lblSubtitulo, lblNSerie, lblCondicao, lblStatus, lblEmprestimoID, lblDtAquisicao, lblDtRemocao;
 
     TextField txtPesqTitulo, txtPesqSubtitulo, txtID, txtLivroID, txtTitulo, txtSubtitulo, txtNSerie, txtCondicao,
             txtStatus, txtEmprestimoID, txtDtAquisicao, txtDtRemocao;
 
-    Button btnPesquiar, btnNovo, btnLimpar, btnSalvar, btnPesqLivro;
+    Button btnPesquisar, btnPesqLivro;
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        window = primaryStage;
-        window.setTitle("GerBiblioteca 2.0");
+    public VBox geraCrudExemplar(){
 
         GridPane layoutCentral = new GridPane();
         layoutCentral.setPadding(new Insets(10));
@@ -39,16 +29,13 @@ public class TelaCadExemplar extends Application {
         layoutCentral.setBorder(new Border(new BorderStroke(Color.BLACK,
                 BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
-        VBox layoutOrganizacao = new VBox(10);
-        layoutOrganizacao.setPadding(new Insets(10));
+        VBox layoutPrincipal = new VBox(10);
+        layoutPrincipal.setPadding(new Insets(10));
 
         HBox layoutPesquisa = new HBox(15);
         layoutPesquisa.setPadding(new Insets(10));
         layoutPesquisa.setBorder(new Border(new BorderStroke(Color.BLACK,
                 BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-
-        HBox layoutBotoes = new HBox(15);
-        layoutBotoes.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
 
         //Campos Pesquisa
         lblPesquisa = new Label("PESQUISA");
@@ -57,9 +44,9 @@ public class TelaCadExemplar extends Application {
         txtPesqTitulo = new TextField();
         lblPesqSubtitulo = new Label("Subtitulo");
         txtPesqSubtitulo = new TextField();
-        btnPesquiar = new Button("Search");
+        btnPesquisar = new Button("Search");
 
-        layoutPesquisa.getChildren().addAll(lblPesqTitulo, txtPesqTitulo, lblPesqSubtitulo, txtPesqSubtitulo, btnPesquiar);
+        layoutPesquisa.getChildren().addAll(lblPesqTitulo, txtPesqTitulo, lblPesqSubtitulo, txtPesqSubtitulo, btnPesquisar);
 
         //Campos de cadastro
         lblCadastro = new Label("CADASTRO");
@@ -118,20 +105,8 @@ public class TelaCadExemplar extends Application {
                 lblStatus, txtStatus, lblEmprestimoID, txtEmprestimoID, lblDtAquisicao, txtDtAquisicao,
                 lblDtRemocao, txtDtRemocao);
 
-        btnNovo = new Button("Novo");
-        btnNovo.setMinWidth(100);
-        btnLimpar = new Button("Limpar");
-        btnLimpar.setMinWidth(100);
-        btnSalvar = new Button("Salvar");
-        btnSalvar.setMinWidth(100);
+        layoutPrincipal.getChildren().addAll(lblPesquisa, layoutPesquisa, lblCadastro, layoutCentral);
 
-        layoutBotoes.getChildren().addAll(btnNovo, btnLimpar, btnSalvar);
-
-        layoutOrganizacao.getChildren().addAll(lblPesquisa, layoutPesquisa, lblCadastro, layoutCentral, layoutBotoes);
-
-        Scene scn = new Scene(layoutOrganizacao, 750, 500);
-
-        window.setScene(scn);
-        window.show();
+        return layoutPrincipal;
     }
 }

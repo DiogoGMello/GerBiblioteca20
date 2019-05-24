@@ -11,24 +11,15 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class TelaCadFuncionario extends Application {
-
-    Stage window;
+public class TelaCadFuncionario{
 
     Label lblPesquisa, lblPesqNome, lblPesqCPF, lblCadastro, lblID, lblCPF, lblNome, lblEndereco, lblNumero, lblBairro,
             lblCEP, lblCidade, lblEstado, lblDtCadastro, lblStatus;
     TextField txtPesqNome, txtPesqCPF, txtID, txtCPF, txtNome, txtEndereco, txtNumero, txtBairro, txtCEP,
             txtCidade, txtEstado, txtDtCadastro, txtStatus;
-    Button btnPesquiar, btnNovo, btnLimpar, btnSalvar;
+    Button btnPesquisar;
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        window = primaryStage;
-        window.setTitle("GerBiblioteca 2.0");
+    public VBox geraCrudFuncionarios(){
 
         GridPane layoutCentral = new GridPane();
         layoutCentral.setPadding(new Insets(10));
@@ -45,9 +36,6 @@ public class TelaCadFuncionario extends Application {
         layoutPesquisa.setBorder(new Border(new BorderStroke(Color.BLACK,
                 BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
-        HBox layoutBotoes = new HBox(15);
-        layoutBotoes.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
-
         //Campos Pesquisa
         lblPesquisa = new Label("PESQUISA");
 
@@ -55,9 +43,9 @@ public class TelaCadFuncionario extends Application {
         txtPesqNome = new TextField();
         lblPesqCPF = new Label("CPF");
         txtPesqCPF = new TextField();
-        btnPesquiar = new Button("Search");
+        btnPesquisar = new Button("Search");
 
-        layoutPesquisa.getChildren().addAll(lblPesqNome, txtPesqNome, lblPesqCPF, txtPesqCPF, btnPesquiar);
+        layoutPesquisa.getChildren().addAll(lblPesqNome, txtPesqNome, lblPesqCPF, txtPesqCPF, btnPesquisar);
 
         //Campos de cadastro
         lblCadastro = new Label("CADASTRO");
@@ -112,24 +100,12 @@ public class TelaCadFuncionario extends Application {
         txtStatus = new TextField();
         layoutCentral.setConstraints(txtStatus, 3,5);
 
-        btnNovo = new Button("Novo");
-        btnNovo.setMinWidth(100);
-        btnLimpar = new Button("Limpar");
-        btnLimpar.setMinWidth(100);
-        btnSalvar = new Button("Salvar");
-        btnSalvar.setMinWidth(100);
-
-        layoutBotoes.getChildren().addAll(btnNovo, btnLimpar, btnSalvar);
-
         layoutCentral.getChildren().addAll(lblPesquisa, lblID, txtID, lblCPF, txtCPF, lblNome, txtNome, lblEndereco,
                 txtEndereco, lblNumero, txtNumero, lblBairro, txtBairro, lblCEP, txtCEP, lblCidade, txtCidade,
                 lblEstado, txtEstado, lblDtCadastro, txtDtCadastro, lblStatus, txtStatus);
 
-        layoutOrganizacao.getChildren().addAll(lblPesquisa, layoutPesquisa, lblCadastro, layoutCentral, layoutBotoes);
+        layoutOrganizacao.getChildren().addAll(lblPesquisa, layoutPesquisa, lblCadastro, layoutCentral);
 
-        Scene scn = new Scene(layoutOrganizacao, 750, 500);
-
-        window.setScene(scn);
-        window.show();
+        return layoutOrganizacao;
     }
 }

@@ -1,35 +1,27 @@
 package boundery;
 
-import javafx.application.Application;
+import controller.MenuLateralControler;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
+import principal.MainBiblioteca;
 
-public class TelaLogin extends Application {
+public class TelaLogin{
 
-    Stage window;
-    Scene scn;
     Label labelTitulo, labelUser, labelPass;
     TextField txtUser;
     PasswordField txtPass;
     Button btnLogin;
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+    public BorderPane geraTelaLogin(){
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        window = primaryStage;
-        window.setTitle("GerBiblioteca 2.0");
-
+        BorderPane layoutReturn = new BorderPane();
         GridPane layoutGrid = new GridPane();
-        layoutGrid.setPadding(new Insets(100,45,20,30));
+        layoutGrid.setPadding(new Insets(20));
         layoutGrid.setVgap(20);
         layoutGrid.setHgap(10);
 
@@ -48,11 +40,14 @@ public class TelaLogin extends Application {
 
         btnLogin = new Button("Entrar");
         layoutGrid.setConstraints(btnLogin, 2, 2);
+        btnLogin.setOnAction( e -> {
+            MenuLateralControler menuControler = new MenuLateralControler();
+            MainBiblioteca.scnPrincipal.setRoot(menuControler.crudCliente());
+        });
 
         layoutGrid.getChildren().addAll(labelTitulo, labelUser, txtUser, labelPass, txtPass, btnLogin);
+        layoutReturn.setCenter(layoutGrid);
 
-        scn = new Scene(layoutGrid, 450, 350);
-        window.setScene(scn);
-        window.show();
+        return layoutReturn;
     }
 }

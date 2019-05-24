@@ -11,22 +11,15 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class TelaCadAutores extends Application {
+public class TelaCadAutores{
 
     Stage window;
 
     Label lblPesquisa, lblPesqNome, lblCadastro, lblID, lblPaisOrigem, lblNome, lblEspecialidade;
     TextField txtPesqNome, txtID, txtPaisOrigem, txtNome, txtEspecialidade;
-    Button btnPesquiar, btnNovo, btnLimpar, btnSalvar;
+    Button btnPesquiar;
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        window = primaryStage;
-        window.setTitle("GerBiblioteca 2.0");
+    public VBox geraCrudAutores(){
 
         GridPane layoutCentral = new GridPane();
         layoutCentral.setPadding(new Insets(10));
@@ -35,16 +28,13 @@ public class TelaCadAutores extends Application {
         layoutCentral.setBorder(new Border(new BorderStroke(Color.BLACK,
                 BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
-        VBox layoutOrganizacao = new VBox(10);
-        layoutOrganizacao.setPadding(new Insets(10));
+        VBox layoutPrincipal = new VBox(10);
+        layoutPrincipal.setPadding(new Insets(10));
 
         HBox layoutPesquisa = new HBox(15);
         layoutPesquisa.setPadding(new Insets(10));
         layoutPesquisa.setBorder(new Border(new BorderStroke(Color.BLACK,
                 BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-
-        HBox layoutBotoes = new HBox(15);
-        layoutBotoes.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
 
         //Campos Pesquisa
         lblPesquisa = new Label("PESQUISA");
@@ -81,20 +71,8 @@ public class TelaCadAutores extends Application {
         layoutCentral.getChildren().addAll(lblID, txtID, lblPaisOrigem, txtPaisOrigem, lblNome, txtNome,
                 lblEspecialidade, txtEspecialidade);
 
-        btnNovo = new Button("Novo");
-        btnNovo.setMinWidth(100);
-        btnLimpar = new Button("Limpar");
-        btnLimpar.setMinWidth(100);
-        btnSalvar = new Button("Salvar");
-        btnSalvar.setMinWidth(100);
+        layoutPrincipal.getChildren().addAll(lblPesquisa, layoutPesquisa, lblCadastro, layoutCentral);
 
-        layoutBotoes.getChildren().addAll(btnNovo, btnLimpar, btnSalvar);
-
-        layoutOrganizacao.getChildren().addAll(lblPesquisa, layoutPesquisa, lblCadastro, layoutCentral, layoutBotoes);
-
-        Scene scn = new Scene(layoutOrganizacao, 750, 500);
-
-        window.setScene(scn);
-        window.show();
+        return layoutPrincipal;
     }
 }

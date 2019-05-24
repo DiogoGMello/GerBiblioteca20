@@ -12,9 +12,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class TelaCadLivro extends Application {
-
-    Stage window;
+public class TelaCadLivro{
 
     Label lblPesquisa, lblPesqTitulo, lblPesqSubtitulo, lblCadastro, lblID, lblGenero, lblTitulo,
             lblSubtitulo, lblAutor, lblEditora, lblSinopse, lblISBN, lblEdicao, lblAno;
@@ -24,16 +22,9 @@ public class TelaCadLivro extends Application {
 
     TextArea txtSinopse;
 
-    Button btnPesquiar, btnNovo, btnLimpar, btnSalvar;
+    Button btnPesquiar;
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        window = primaryStage;
-        window.setTitle("GerBiblioteca 2.0");
+    public VBox geraCrudLivro(){
 
         GridPane layoutCentral = new GridPane();
         layoutCentral.setPadding(new Insets(10));
@@ -49,9 +40,6 @@ public class TelaCadLivro extends Application {
         layoutPesquisa.setPadding(new Insets(10));
         layoutPesquisa.setBorder(new Border(new BorderStroke(Color.BLACK,
                 BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-
-        HBox layoutBotoes = new HBox(15);
-        layoutBotoes.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
 
         //Campos Pesquisa
         lblPesquisa = new Label("PESQUISA");
@@ -118,20 +106,8 @@ public class TelaCadLivro extends Application {
                 lblSubtitulo, txtSubtitulo, lblAutor, txtAutor, lblEditora, txtEditora, lblSinopse, txtSinopse,
                 lblISBN, txtISBN, lblEdicao, txtEdicao, lblAno, txtAno);
 
-        btnNovo = new Button("Novo");
-        btnNovo.setMinWidth(100);
-        btnLimpar = new Button("Limpar");
-        btnLimpar.setMinWidth(100);
-        btnSalvar = new Button("Salvar");
-        btnSalvar.setMinWidth(100);
+        layoutOrganizacao.getChildren().addAll(lblPesquisa, layoutPesquisa, lblCadastro, layoutCentral);
 
-        layoutBotoes.getChildren().addAll(btnNovo, btnLimpar, btnSalvar);
-
-        layoutOrganizacao.getChildren().addAll(lblPesquisa, layoutPesquisa, lblCadastro, layoutCentral, layoutBotoes);
-
-        Scene scn = new Scene(layoutOrganizacao, 750, 500);
-
-        window.setScene(scn);
-        window.show();
+        return layoutOrganizacao;
     }
 }

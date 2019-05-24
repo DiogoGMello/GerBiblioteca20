@@ -8,13 +8,22 @@ import java.util.GregorianCalendar;
 public class Emprestimo {
     private int idEmprestimo;
     private Cliente cliente;
-    private Exemplar exemplar;
+    private Exemplar exemplar01, exemplar02, exemplar03;
     private Date dataEmprestimo;
     private Date dataDevEfetiva;
     private int funcionarioID;
     private boolean statusEmprestimo;
 
     public Emprestimo(){
+    }
+
+    public Emprestimo(int idEmprestimo, Date dataEmprestimo,
+                      Date dataDevEfetiva, int funcionarioID, boolean statusEmprestimo) {
+        this.idEmprestimo = idEmprestimo;
+        this.dataEmprestimo = dataEmprestimo;
+        this.dataDevEfetiva = dataDevEfetiva;
+        this.funcionarioID = funcionarioID;
+        this.statusEmprestimo = statusEmprestimo;
     }
 
     public int getIdEmprestimo() {
@@ -33,12 +42,28 @@ public class Emprestimo {
         this.cliente = cliente;
     }
 
-    public Exemplar getExemplar() {
-        return exemplar;
+    public Exemplar getExemplar01() {
+        return exemplar01;
     }
 
-    public void setExemplar(Exemplar exemplar) {
-        this.exemplar = exemplar;
+    public void setExemplar01(Exemplar exemplar01) {
+        this.exemplar01 = exemplar01;
+    }
+
+    public Exemplar getExemplar02() {
+        return exemplar02;
+    }
+
+    public void setExemplar02(Exemplar exemplar02) {
+        this.exemplar02 = exemplar02;
+    }
+
+    public Exemplar getExemplar03() {
+        return exemplar03;
+    }
+
+    public void setExemplar03(Exemplar exemplar03) {
+        this.exemplar03 = exemplar03;
     }
 
     public Date getDataEmprestimo() {
