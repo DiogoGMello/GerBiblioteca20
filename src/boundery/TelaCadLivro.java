@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.bean.Livro;
 
 public class TelaCadLivro{
 
@@ -109,5 +110,22 @@ public class TelaCadLivro{
         layoutOrganizacao.getChildren().addAll(lblPesquisa, layoutPesquisa, lblCadastro, layoutCentral);
 
         return layoutOrganizacao;
+    }
+
+    public Livro coletaLivro(){
+        Livro livro = new Livro();
+
+        livro.setIdLivro(Integer.parseInt(txtID.getText()));
+        livro.setGenero(txtGenero.getText());
+        livro.setTitulo(txtTitulo.getText());
+        livro.setSubTitulo(txtTitulo.getText());
+        livro.setAutorID(Integer.parseInt(txtAutor.getText()));
+        livro.setEditoraID(Integer.parseInt(txtEditora.getText()));
+        livro.setSinopse(txtSinopse.getText());
+        livro.setISBN(txtISBN.getText());
+        livro.setEdicao(Integer.parseInt(txtEdicao.getText()));
+        livro.setAno(Integer.parseInt(txtAno.getText()));
+
+        return livro;
     }
 }

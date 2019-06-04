@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.bean.Editora;
 
 public class TelaCadEditora{
 
@@ -93,5 +94,19 @@ public class TelaCadEditora{
         layoutPrincipal.getChildren().addAll(lblPesquisa, layoutPesquisa, lblCadastro, layoutCentral);
 
         return layoutPrincipal;
+    }
+
+    public Editora coletaEditora(){
+        Editora editora = new Editora();
+
+        editora.setIdEditora(Integer.parseInt(txtID.getText()));
+        editora.setNome(txtNome.getText());
+        editora.setRevendedor(txtRevendedor.getText());
+        editora.setContato(txtContato.getText());
+        editora.setContatoRevendedor(txtContRevendedor.getText());
+        editora.setEmail(txtEmailEditora.getText());
+        editora.setEmailRevendedor(txtEmailRevendedor.getText());
+
+        return editora;
     }
 }

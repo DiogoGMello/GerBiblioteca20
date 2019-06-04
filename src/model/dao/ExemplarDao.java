@@ -1,7 +1,7 @@
 package model.dao;
 
 import connection.ConnectionFactory;
-import model.bean.Cliente;
+import model.bean.Exemplar;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,27 +10,27 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AutorDao {
+public class ExemplarDao {
 
     private Connection con = null;
 
-    public AutorDao(){
+    public ExemplarDao(){
         con = ConnectionFactory.getConnection();
     }
 
     //ir� inserir um novo campo no banco de dados
-    public boolean salvarClienteBD(Cliente cliente){
+    public boolean salvarExemplarBD(Exemplar exemplar){
 
-        String sql = "INSERT INTO cliente () VALUES ()";
+        String sql = "INSERT INTO exemplar () VALUES ()";
 
         PreparedStatement stmt = null;
 
         try{
             stmt = con.prepareStatement(sql);
 
-//            stmt.setString(1, cliente.());
-//            stmt.setString(2, cliente.());
-//            stmt.setString(3, cliente.());
+//            stmt.setString(1, exemplar.());
+//            stmt.setString(2, exemplar.());
+//            stmt.setString(3, exemplar.());
 
             stmt.executeUpdate();
 
@@ -48,20 +48,20 @@ public class AutorDao {
         }
     }
 
-    //Ir� atualizar o registro do cliente
-    public boolean alterarClienteBD(Cliente cliente){
+    //Ir� atualizar o registro do exemplar
+    public boolean alterarExemplarBD(Exemplar exemplar){
 
-        String sql = "UPDATE cliente SET nome = ?, endereco = ?, telefone = ? WHERE cliente_ID = ?";
+        String sql = "UPDATE exemplar SET nome = ?, endereco = ?, telefone = ? WHERE cliente_ID = ?";
 
         PreparedStatement stmt = null;
 
         try{
             stmt = con.prepareStatement(sql);
 
-//            stmt.setString(1, cliente.());
-//            stmt.setString(2, cliente.());
-//            stmt.setString(3, cliente.e());
-//            stmt.setInt(4, cliente.());
+//            stmt.setString(1, exemplar.());
+//            stmt.setString(2, exemplar.());
+//            stmt.setString(3, exemplar.e());
+//            stmt.setInt(4, exemplar.());
 
             return true;
 
@@ -76,27 +76,27 @@ public class AutorDao {
         }
     }
 
-    //Buscar todos os registros de cliente da tabela
-    public List<Cliente> encontrarClienteBDTodos(){
+    //Buscar todos os registros de exemplar da tabela
+    public List<Exemplar> encontrarExemplarBDTodos(){
 
         String sql = "SELECT * FROM cliente";
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        List<Cliente> cliente = new ArrayList<>();
+        List<Exemplar> exemplar = new ArrayList<>();
 
-        return cliente;
+        return exemplar;
     }
 
-    public Cliente encontrarClienteID(int id) {
+    public Exemplar encontrarExemplarID(int id) {
         String sql = "SELECT * FROM cliente ";
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        Cliente cliente = new Cliente();
-        return cliente;
+        Exemplar exemplar = new Exemplar();
+        return exemplar;
     }
 }
 

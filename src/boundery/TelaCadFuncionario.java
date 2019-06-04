@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.bean.Funcionario;
 
 public class TelaCadFuncionario{
 
@@ -107,5 +108,24 @@ public class TelaCadFuncionario{
         layoutOrganizacao.getChildren().addAll(lblPesquisa, layoutPesquisa, lblCadastro, layoutCentral);
 
         return layoutOrganizacao;
+    }
+
+    public Funcionario coletaFuncionario(){
+        Funcionario funcionario = new Funcionario();
+
+        funcionario.setIdFuncionario(Integer.parseInt(txtID.getText()));
+        funcionario.setCpf(Integer.parseInt(txtCPF.getText()));
+        funcionario.setNome(txtNome.getText());
+        funcionario.setEndereco(txtEndereco.getText());
+        funcionario.setNumeroEndereco(Integer.parseInt(txtNumero.getText()));
+        funcionario.setBairro(txtBairro.getText());
+        funcionario.setCep(Integer.parseInt(txtCEP.getText()));
+        funcionario.setCidade(txtCidade.getText());
+        funcionario.setEstado(txtEstado.getText());
+        //trabalhar a conversão
+        //funcionario.setDataInicioContrato();
+        funcionario.setStatus(txtStatus.getText());
+
+        return funcionario;
     }
 }

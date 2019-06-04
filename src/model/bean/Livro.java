@@ -11,6 +11,16 @@ public class Livro {
     private String genero;
     private String palavrasChave;
     private String sinopse;
+    private String ISBN;
+
+    public String getISBN() {
+        return ISBN;
+    }
+
+    public void setISBN(String ISBN) {
+        this.ISBN = ISBN;
+    }
+
     private int ano;
     private int edicao;
 

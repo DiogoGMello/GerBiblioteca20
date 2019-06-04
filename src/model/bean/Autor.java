@@ -5,10 +5,10 @@ import java.sql.Date;
 public class Autor {
 
     private int idAutor;
-    private String descricaoAutor;
+    private String nomeAutor;
     private Date dataNascimento;
     private String paisOrigem;
-    private String areaFormacao;
+    private String especialidade;
 
     public Autor(){
     }
@@ -21,12 +21,12 @@ public class Autor {
         this.idAutor = idAutor;
     }
 
-    public String getDescricaoAutor() {
-        return descricaoAutor;
+    public String getNomeoAutor() {
+        return nomeAutor;
     }
 
-    public void setDescricaoAutor(String descricaoAutor) {
-        this.descricaoAutor = descricaoAutor;
+    public void setNomeAutor(String nomeAutor) {
+        this.nomeAutor = nomeAutor;
     }
 
     public Date getDataNascimento() {
@@ -45,11 +45,11 @@ public class Autor {
         this.paisOrigem = paisOrigem;
     }
 
-    public String getAreaFormacao() {
-        return areaFormacao;
+    public String getEspecialidade() {
+        return especialidade;
     }
 
-    public void setAreaFormacao(String areaFormacao) {
-        this.areaFormacao = areaFormacao;
+    public void setEspecialidade(String especialidade) {
+        this.especialidade = especialidade;
     }
 }

@@ -1,7 +1,7 @@
 package model.dao;
 
 import connection.ConnectionFactory;
-import model.bean.Cliente;
+import model.bean.Emprestimo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,27 +10,27 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EditoraDao {
+public class EmprestimoDao {
 
     private Connection con = null;
 
-    public EditoraDao(){
+    public EmprestimoDao(){
         con = ConnectionFactory.getConnection();
     }
 
     //ir� inserir um novo campo no banco de dados
-    public boolean salvarClienteBD(Cliente cliente){
+    public boolean salvarEmprestimoBD(Emprestimo emprestmo){
 
-        String sql = "INSERT INTO cliente () VALUES ()";
+        String sql = "INSERT INTO emprestimo () VALUES ()";
 
         PreparedStatement stmt = null;
 
         try{
             stmt = con.prepareStatement(sql);
 
-//            stmt.setString(1, cliente.());
-//            stmt.setString(2, cliente.());
-//            stmt.setString(3, cliente.());
+//            stmt.setString(1, emprestimo.());
+//            stmt.setString(2, emprestimo.());
+//            stmt.setString(3, emprestimo.());
 
             stmt.executeUpdate();
 
@@ -48,20 +48,20 @@ public class EditoraDao {
         }
     }
 
-    //Ir� atualizar o registro do cliente
-    public boolean alterarClienteBD(Cliente cliente){
+    //Ir� atualizar o registro do emprestimo
+    public boolean alterarEmprestimoBD(Emprestimo emprestimo){
 
-        String sql = "UPDATE cliente SET nome = ?, endereco = ?, telefone = ? WHERE cliente_ID = ?";
+        String sql = "UPDATE emprestimo SET nome = ?, endereco = ?, telefone = ? WHERE cliente_ID = ?";
 
         PreparedStatement stmt = null;
 
         try{
             stmt = con.prepareStatement(sql);
 
-//            stmt.setString(1, cliente.());
-//            stmt.setString(2, cliente.());
-//            stmt.setString(3, cliente.e());
-//            stmt.setInt(4, cliente.());
+//            stmt.setString(1, emprestimo.());
+//            stmt.setString(2, emprestimo.());
+//            stmt.setString(3, emprestimo.e());
+//            stmt.setInt(4, emprestimo.());
 
             return true;
 
@@ -76,27 +76,27 @@ public class EditoraDao {
         }
     }
 
-    //Buscar todos os registros de cliente da tabela
-    public List<Cliente> encontrarClienteBDTodos(){
+    //Buscar todos os registros de emprestimo da tabela
+    public List<Emprestimo> encontrarEmprestimoBDTodos(){
 
-        String sql = "SELECT * FROM cliente";
+        String sql = "SELECT * FROM emprestimo";
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        List<Cliente> cliente = new ArrayList<>();
+        List<Emprestimo> emprestimo = new ArrayList<>();
 
-        return cliente;
+        return emprestimo;
     }
 
-    public Cliente encontrarClienteID(int id) {
-        String sql = "SELECT * FROM cliente ";
+    public Emprestimo encontrarEmprestimoID(int id) {
+        String sql = "SELECT * FROM emprestimo ";
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        Cliente cliente = new Cliente();
-        return cliente;
+        Emprestimo emprestimo = new Emprestimo();
+        return emprestimo;
     }
 }
 

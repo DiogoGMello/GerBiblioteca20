@@ -1,7 +1,7 @@
 package model.dao;
 
 import connection.ConnectionFactory;
-import model.bean.Cliente;
+import model.bean.Funcionario;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,18 +19,18 @@ public class FuncionarioDao {
     }
 
     //ir� inserir um novo campo no banco de dados
-    public boolean salvarClienteBD(Cliente cliente){
+    public boolean salvarFuncionarioBD(Funcionario funcionario){
 
-        String sql = "INSERT INTO cliente () VALUES ()";
+        String sql = "INSERT INTO funcionario () VALUES ()";
 
         PreparedStatement stmt = null;
 
         try{
             stmt = con.prepareStatement(sql);
 
-//            stmt.setString(1, cliente.());
-//            stmt.setString(2, cliente.());
-//            stmt.setString(3, cliente.());
+//            stmt.setString(1, funcionario.());
+//            stmt.setString(2, funcionario.());
+//            stmt.setString(3, funcionario.());
 
             stmt.executeUpdate();
 
@@ -48,20 +48,20 @@ public class FuncionarioDao {
         }
     }
 
-    //Ir� atualizar o registro do cliente
-    public boolean alterarClienteBD(Cliente cliente){
+    //Ir� atualizar o registro do funcionario
+    public boolean alterarFuncionarioBD(Funcionario funcionario){
 
-        String sql = "UPDATE cliente SET nome = ?, endereco = ?, telefone = ? WHERE cliente_ID = ?";
+        String sql = "UPDATE funcionario SET nome = ?, endereco = ?, telefone = ? WHERE cliente_ID = ?";
 
         PreparedStatement stmt = null;
 
         try{
             stmt = con.prepareStatement(sql);
 
-//            stmt.setString(1, cliente.());
-//            stmt.setString(2, cliente.());
-//            stmt.setString(3, cliente.e());
-//            stmt.setInt(4, cliente.());
+//            stmt.setString(1, funcionario.());
+//            stmt.setString(2, funcionario.());
+//            stmt.setString(3, funcionario.e());
+//            stmt.setInt(4, funcionario.());
 
             return true;
 
@@ -76,27 +76,27 @@ public class FuncionarioDao {
         }
     }
 
-    //Buscar todos os registros de cliente da tabela
-    public List<Cliente> encontrarClienteBDTodos(){
+    //Buscar todos os registros de funcionario da tabela
+    public List<Funcionario> encontrarFuncionarioBDTodos(){
 
-        String sql = "SELECT * FROM cliente";
+        String sql = "SELECT * FROM funcionario";
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        List<Cliente> cliente = new ArrayList<>();
+        List<Funcionario> funcionario = new ArrayList<>();
 
-        return cliente;
+        return funcionario;
     }
 
-    public Cliente encontrarClienteID(int id) {
-        String sql = "SELECT * FROM cliente ";
+    public Funcionario encontrarFuncionarioID(int id) {
+        String sql = "SELECT * FROM funcionario ";
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        Cliente cliente = new Cliente();
-        return cliente;
+        Funcionario funcionario = new Funcionario();
+        return funcionario;
     }
 }
 

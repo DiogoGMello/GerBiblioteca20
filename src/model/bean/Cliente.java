@@ -2,9 +2,8 @@ package model.bean;
 
 import java.sql.Date;
 
-public class Cliente {
+public class Cliente extends Pessoa{
     private int idCliente;
-    private int pessoaID;
     private String tipoConta;
     private boolean pendenciaEmprestimo;
 
@@ -14,14 +13,6 @@ public class Cliente {
 
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
-    }
-
-    public int getPessoaID() {
-        return pessoaID;
-    }
-
-    public void setPessoaID(int pessoaID) {
-        this.pessoaID = pessoaID;
     }
 
     public String getTipoConta() {

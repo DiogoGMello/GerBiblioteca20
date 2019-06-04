@@ -1,23 +1,20 @@
 package boundery;
 
-import javafx.application.Application;
+import controller.AutorCtr;
 import javafx.geometry.Insets;
-import javafx.geometry.NodeOrientation;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
+import model.bean.Autor;
 
 public class TelaCadAutores{
 
-    Stage window;
-
-    Label lblPesquisa, lblPesqNome, lblCadastro, lblID, lblPaisOrigem, lblNome, lblEspecialidade;
-    TextField txtPesqNome, txtID, txtPaisOrigem, txtNome, txtEspecialidade;
-    Button btnPesquiar;
+    static Label lblPesquisa, lblPesqNome, lblCadastro, lblID, lblPaisOrigem, lblNome, lblEspecialidade;
+    static TextField txtPesqNome, txtID, txtPaisOrigem, txtNome, txtEspecialidade;
+    static Button btnPesquiar;
+    static AutorCtr autorController = new AutorCtr();
 
     public VBox geraCrudAutores(){
 
@@ -37,16 +34,19 @@ public class TelaCadAutores{
                 BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
         //Campos Pesquisa
-        lblPesquisa = new Label("PESQUISA");
+        lblPesquisa = new Label("PESQUISA AUTORES");
 
         lblPesqNome = new Label("Nome");
         txtPesqNome = new TextField();
         btnPesquiar = new Button("Search");
+        btnPesquiar.setOnAction(e-> {
+            autorController.pesqAutorNome(txtPesqNome.getText());
+        });
 
         layoutPesquisa.getChildren().addAll(lblPesqNome, txtPesqNome, btnPesquiar);
 
         //Campos de cadastro
-        lblCadastro = new Label("CADASTRO");
+        lblCadastro = new Label("CADASTRO AUTORES");
 
         lblID = new Label("ID");
         layoutCentral.setConstraints(lblID, 0, 0);
@@ -74,5 +74,16 @@ public class TelaCadAutores{
         layoutPrincipal.getChildren().addAll(lblPesquisa, layoutPesquisa, lblCadastro, layoutCentral);
 
         return layoutPrincipal;
+    }
+
+    public Autor coletaAutor(){
+        Autor autor = new Autor();
+
+        autor.setIdAutor(Integer.parseInt((txtID.getText())));
+        autor.setPaisOrigem(txtPaisOrigem.getText());
+        autor.setNomeAutor(txtNome.getText());
+        autor.setEspecialidade(txtEspecialidade.getText());
+
+        return autor;
     }
 }

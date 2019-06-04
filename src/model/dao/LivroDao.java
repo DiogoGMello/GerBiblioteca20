@@ -1,7 +1,7 @@
 package model.dao;
 
 import connection.ConnectionFactory;
-import model.bean.Cliente;
+import model.bean.Livro;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,27 +10,27 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FuncionarioDao {
+public class LivroDao {
 
     private Connection con = null;
 
-    public FuncionarioDao(){
+    public LivroDao(){
         con = ConnectionFactory.getConnection();
     }
 
     //ir� inserir um novo campo no banco de dados
-    public boolean salvarClienteBD(Cliente cliente){
+    public boolean salvarLivroBD(Livro livro){
 
-        String sql = "INSERT INTO cliente () VALUES ()";
+        String sql = "INSERT INTO livro () VALUES ()";
 
         PreparedStatement stmt = null;
 
         try{
             stmt = con.prepareStatement(sql);
 
-//            stmt.setString(1, cliente.());
-//            stmt.setString(2, cliente.());
-//            stmt.setString(3, cliente.());
+//            stmt.setString(1, livro.());
+//            stmt.setString(2, livro.());
+//            stmt.setString(3, livro.());
 
             stmt.executeUpdate();
 
@@ -48,20 +48,20 @@ public class FuncionarioDao {
         }
     }
 
-    //Ir� atualizar o registro do cliente
-    public boolean alterarClienteBD(Cliente cliente){
+    //Ir� atualizar o registro do livro
+    public boolean alterarLivroBD(Livro livro){
 
-        String sql = "UPDATE cliente SET nome = ?, endereco = ?, telefone = ? WHERE cliente_ID = ?";
+        String sql = "UPDATE livro SET nome = ?, endereco = ?, telefone = ? WHERE cliente_ID = ?";
 
         PreparedStatement stmt = null;
 
         try{
             stmt = con.prepareStatement(sql);
 
-//            stmt.setString(1, cliente.());
-//            stmt.setString(2, cliente.());
-//            stmt.setString(3, cliente.e());
-//            stmt.setInt(4, cliente.());
+//            stmt.setString(1, livro.());
+//            stmt.setString(2, livro.());
+//            stmt.setString(3, livro.e());
+//            stmt.setInt(4, livro.());
 
             return true;
 
@@ -76,27 +76,27 @@ public class FuncionarioDao {
         }
     }
 
-    //Buscar todos os registros de cliente da tabela
-    public List<Cliente> encontrarClienteBDTodos(){
+    //Buscar todos os registros de livro da tabela
+    public List<Livro> encontrarLivroBDTodos(){
 
-        String sql = "SELECT * FROM cliente";
+        String sql = "SELECT * FROM livro";
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        List<Cliente> cliente = new ArrayList<>();
+        List<Livro> livro = new ArrayList<>();
 
-        return cliente;
+        return livro;
     }
 
-    public Cliente encontrarClienteID(int id) {
-        String sql = "SELECT * FROM cliente ";
+    public Livro encontrarLivroID(int id) {
+        String sql = "SELECT * FROM livro ";
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        Cliente cliente = new Cliente();
-        return cliente;
+        Livro livro = new Livro();
+        return livro;
     }
 }
 

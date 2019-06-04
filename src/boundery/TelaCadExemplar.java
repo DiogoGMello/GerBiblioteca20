@@ -1,5 +1,6 @@
 package boundery;
 
+import controller.LivrosCtr;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.NodeOrientation;
@@ -10,6 +11,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.bean.Exemplar;
+import model.bean.Livro;
 
 public class TelaCadExemplar{
     Label lblPesquisa, lblPesqTitulo, lblPesqSubtitulo, lblCadastro, lblID, lblLivroID, lblTitulo,
@@ -108,5 +111,19 @@ public class TelaCadExemplar{
         layoutPrincipal.getChildren().addAll(lblPesquisa, layoutPesquisa, lblCadastro, layoutCentral);
 
         return layoutPrincipal;
+    }
+
+    public Exemplar coletaExemplar(){
+        Exemplar exemplar = new Exemplar();
+        Livro livro = new Livro();
+        LivrosCtr livrosCtr = new LivrosCtr();
+
+        exemplar.setIdExemplar(Integer.parseInt(txtID.getText()));
+        exemplar.setLivro(livrosCtr.pesqLivro(Integer.parseInt(txtLivroID.getText())));
+        exemplar.setNumSerie(Integer.parseInt(txtNSerie.getText()));
+        exemplar.setConservacao(txtCondicao.getText());
+        exemplar.setStatusExemplar(Boolean.parseBoolean(txtStatus.getText()));
+        //Tratar data aquisição e remoção
+        return exemplar;
     }
 }

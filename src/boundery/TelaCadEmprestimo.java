@@ -1,18 +1,21 @@
 package boundery;
 
+import controller.ClienteCtr;
+import controller.ExemplaresCtr;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import model.bean.Emprestimo;
 
 public class TelaCadEmprestimo {
 
-    Label lblPesquisa, lblPesqID, lblPesqCliente, lblCadastro, lblID, lblDtEmprestimo, lblStatus, lblCliente, lblDevPrevista,
-            lblDevEfetiva, lblExemlar01, lblExemlar02, lblExemlar03;
-    TextField txtPesqID, txtPesqCliente, txtID, txtDtEmprestimo, txtStatus, txtCliente, txtDevPrevista,
-            txtDevEfetiva, txtExemlar01, txtExemlar02, txtExemlar03;
+    Label lblPesquisa, lblPesqID, lblPesqCliente, lblCadastro, lblID, lblDtEmprestimo, lblStatus, lblCliente,
+            lblClienteID, lblDevPrevista, lblDevEfetiva, lblExemplar01, lblExemplar01ID, lblExemlar02, lblExemlar03;
+    TextField txtPesqID, txtPesqCliente, txtID, txtDtEmprestimo, txtStatus, txtCliente, txtClienteID, txtDevPrevista,
+            txtDevEfetiva, txtExemplar01, txtExemplar01ID, txtExemlar02, txtExemlar03;
     Button btnPesquiar;
 
     public VBox geraCrudEmprestimo(){
@@ -63,6 +66,10 @@ public class TelaCadEmprestimo {
         layoutCentral.setConstraints(lblCliente, 0, 1);
         txtCliente = new TextField();
         layoutCentral.setConstraints(txtCliente, 1,1);
+        lblClienteID = new Label("Cliente ID");
+        layoutCentral.setConstraints(lblClienteID, 2, 1);
+        txtClienteID = new TextField();
+        layoutCentral.setConstraints(txtClienteID, 3,1);
 
         lblDevPrevista = new Label("Dev Prevista");
         layoutCentral.setConstraints(lblDevPrevista, 0, 2);
@@ -73,17 +80,39 @@ public class TelaCadEmprestimo {
         txtDevEfetiva = new TextField();
         layoutCentral.setConstraints(txtDevEfetiva, 3,2);
 
-        lblExemlar01 = new Label("Exemplar 01");
-        layoutCentral.setConstraints(lblExemlar01, 0, 3);
-        txtExemlar01 = new TextField();
-        layoutCentral.setConstraints(txtExemlar01, 1,3);
+        lblExemplar01 = new Label("Exemplar 01");
+        layoutCentral.setConstraints(lblExemplar01, 0, 3);
+        txtExemplar01 = new TextField();
+        layoutCentral.setConstraints(txtExemplar01, 1,3);
+        lblExemplar01ID = new Label("Exemplar 01 ID");
+        layoutCentral.setConstraints(lblExemplar01ID, 2, 3);
+        txtExemplar01ID = new TextField();
+        layoutCentral.setConstraints(txtExemplar01ID, 3,3);
+
 
         layoutCentral.getChildren().addAll(lblPesquisa, lblID, txtID, lblDtEmprestimo, txtDtEmprestimo, lblStatus,
-                txtStatus, lblCliente, txtCliente, lblDevPrevista, txtDevPrevista, lblDevEfetiva, txtDevEfetiva,
-                lblExemlar01, txtExemlar01);
+                txtStatus, lblCliente, txtCliente, lblClienteID, txtClienteID, lblDevPrevista, txtDevPrevista,
+                lblDevEfetiva, txtDevEfetiva, lblExemplar01, txtExemplar01, lblExemplar01ID, txtExemplar01ID);
 
         layoutPrincipal.getChildren().addAll(lblPesquisa, layoutPesquisa, lblCadastro, layoutCentral);
 
         return layoutPrincipal;
+    }
+
+
+    public Emprestimo coletaEmprestimo(){
+        Emprestimo emprestimo = new Emprestimo();
+        ClienteCtr clienteCtr = new ClienteCtr();
+        ExemplaresCtr exemplaresCtr = new ExemplaresCtr();
+
+        emprestimo.setIdEmprestimo(Integer.parseInt(txtID.getText()));
+        //Tratar as datas
+        //Ajustar
+        emprestimo.setStatusEmprestimo(Boolean.parseBoolean(txtStatus.getText()));
+        emprestimo.setCliente(clienteCtr.pesqCliente(Integer.parseInt(txtClienteID.getText())));
+        emprestimo.setExemplar01(exemplaresCtr.pesqExemplar(Integer.parseInt(txtExemplar01ID.getText())));
+        //Tratar datas
+
+        return emprestimo;
     }
 }

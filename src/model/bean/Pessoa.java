@@ -1,13 +1,68 @@
 package model.bean;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Pessoa {
     private int idPessoa;
     private String nome;
     private String endereco;
+    private int numeroEndereco;
+    private String bairro;
+    private int cep;
+    private String cidade;
+    private String estado;
     private String telefone;
     private int cpf;
+
+    public int getNumeroEndereco() {
+        return numeroEndereco;
+    }
+
+    public void setNumeroEndereco(int numeroEndereco) {
+        this.numeroEndereco = numeroEndereco;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public int getCep() {
+        return cep;
+    }
+
+    public void setCep(int cep) {
+        this.cep = cep;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    private String status;
     private Date dataMatricula;
 
     public int getIdPessoa() {

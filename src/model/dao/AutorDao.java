@@ -1,7 +1,7 @@
 package model.dao;
 
 import connection.ConnectionFactory;
-import model.bean.Cliente;
+import model.bean.Autor;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,24 +13,25 @@ import java.util.List;
 public class AutorDao {
 
     private Connection con = null;
+    Autor autor = new Autor();
 
     public AutorDao(){
         con = ConnectionFactory.getConnection();
     }
 
     //ir� inserir um novo campo no banco de dados
-    public boolean salvarClienteBD(Cliente cliente){
+    public boolean salvarAutorBD(Autor autor){
 
-        String sql = "INSERT INTO cliente () VALUES ()";
+        String sql = "INSERT INTO autor () VALUES ()";
 
         PreparedStatement stmt = null;
 
         try{
             stmt = con.prepareStatement(sql);
 
-//            stmt.setString(1, cliente.());
-//            stmt.setString(2, cliente.());
-//            stmt.setString(3, cliente.());
+//            stmt.setString(1, autor.());
+//            stmt.setString(2, autor.());
+//            stmt.setString(3, autor.());
 
             stmt.executeUpdate();
 
@@ -48,20 +49,20 @@ public class AutorDao {
         }
     }
 
-    //Ir� atualizar o registro do cliente
-    public boolean alterarClienteBD(Cliente cliente){
+    //Ir� atualizar o registro do autor
+    public boolean alterarAutorBD(Autor autor){
 
-        String sql = "UPDATE cliente SET nome = ?, endereco = ?, telefone = ? WHERE cliente_ID = ?";
+        String sql = "UPDATE autor SET nome = ?, endereco = ?, telefone = ? WHERE cliente_ID = ?";
 
         PreparedStatement stmt = null;
 
         try{
             stmt = con.prepareStatement(sql);
 
-//            stmt.setString(1, cliente.());
-//            stmt.setString(2, cliente.());
-//            stmt.setString(3, cliente.e());
-//            stmt.setInt(4, cliente.());
+//            stmt.setString(1, autor.());
+//            stmt.setString(2, autor.());
+//            stmt.setString(3, autor.e());
+//            stmt.setInt(4, autor.());
 
             return true;
 
@@ -76,27 +77,27 @@ public class AutorDao {
         }
     }
 
-    //Buscar todos os registros de cliente da tabela
-    public List<Cliente> encontrarClienteBDTodos(){
+    //Buscar todos os registros de autor da tabela
+    public List<Autor> encontrarAutorBDTodos(){
 
-        String sql = "SELECT * FROM cliente";
+        String sql = "SELECT * FROM autor";
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        List<Cliente> cliente = new ArrayList<>();
+        List<Autor> autor = new ArrayList<>();
 
-        return cliente;
+        return autor;
     }
 
-    public Cliente encontrarClienteID(int id) {
+    public Autor encontrarAutorID(int id) {
         String sql = "SELECT * FROM cliente ";
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        Cliente cliente = new Cliente();
-        return cliente;
+        Autor autor = new Autor();
+        return autor;
     }
 }
 

@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.bean.Cliente;
 
 public class TelaCadCliente{
 
@@ -107,5 +108,22 @@ public class TelaCadCliente{
         layoutPrincipal.getChildren().addAll(lblPesquisa, layoutPesquisa, lblCadastro, layoutCentral);
 
         return layoutPrincipal;
+    }
+
+    public Cliente coletaCliente(){
+        Cliente cliente = new Cliente();
+
+        cliente.setIdCliente(Integer.parseInt(txtID.getText()));
+        cliente.setCpf(Integer.parseInt(txtCPF.getText()));
+        cliente.setNome(txtNome.getText());
+        cliente.setEndereco(txtEndereco.getText());
+        cliente.setNumeroEndereco(Integer.parseInt(txtNumero.getText()));
+        cliente.setBairro(txtBairro.getText());
+        cliente.setCep(Integer.parseInt(txtCEP.getText()));
+        cliente.setCidade(txtCidade.getText());
+        cliente.setEstado(txtEstado.getText());
+        cliente.setStatus(txtStatus.getText());
+
+        return cliente;
     }
 }

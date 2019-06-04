@@ -2,7 +2,7 @@ package model.bean;
 
 import java.sql.Date;
 
-public class Funcionario {
+public class Funcionario extends Pessoa{
     private int idFuncionario;
     private int pessoaID;
     private Date dataInicioContrato;

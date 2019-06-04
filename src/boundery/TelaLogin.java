@@ -1,6 +1,6 @@
 package boundery;
 
-import controller.MenuLateralControler;
+import controller.BtnLateralControler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -41,7 +41,7 @@ public class TelaLogin{
         btnLogin = new Button("Entrar");
         layoutGrid.setConstraints(btnLogin, 2, 2);
         btnLogin.setOnAction( e -> {
-            MenuLateralControler menuControler = new MenuLateralControler();
+            BtnLateralControler menuControler = new BtnLateralControler();
             MainBiblioteca.scnPrincipal.setRoot(menuControler.crudCliente());
         });
 

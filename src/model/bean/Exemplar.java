@@ -6,8 +6,17 @@ public class Exemplar {
     private int idExemplar;
     private int NumSerie;
     private Date dataEntrada;
-    private String conservação;
+    private String conservacao;
     private boolean statusExemplar;
+    private Livro livro;
+
+    public Livro getLivro() {
+        return livro;
+    }
+
+    public void setLivro(Livro livro) {
+        this.livro = livro;
+    }
 
     public Exemplar(){
     }
@@ -36,12 +45,12 @@ public class Exemplar {
         this.dataEntrada = dataEntrada;
     }
 
-    public String getConservação() {
-        return conservação;
+    public String getConservacao() {
+        return conservacao;
     }
 
-    public void setConservação(String conservação) {
-        this.conservação = conservação;
+    public void setConservacao(String conservacao) {
+        this.conservacao = conservacao;
     }
 
     public boolean isStatusExemplar() {
