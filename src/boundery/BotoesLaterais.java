@@ -17,7 +17,7 @@ public class BotoesLaterais {
 
     public VBox menuMontagem(){
 
-        BtnLateralControler menuControler = new BtnLateralControler();
+        BtnLateralControler btnLateralControler = new BtnLateralControler();
 
         menuIdentificacao = new Label("MENU");
 
@@ -28,53 +28,43 @@ public class BotoesLaterais {
         btnEmprestimo.setMinWidth(125);
         btnEmprestimo.setOnAction(e->
                 MainBiblioteca.scnPrincipal
-                        .setRoot(menuControler.crudEmprestimo()));
+                        .setRoot(btnLateralControler.crudEmprestimo()));
 
         btnCliente = new Button("Clientes");
         btnCliente.setMinWidth(125);
         btnCliente.setOnAction(e->
                 MainBiblioteca.scnPrincipal
-                        .setRoot(menuControler.crudCliente()));
+                        .setRoot(btnLateralControler.crudCliente()));
 
         btnExemplar = new Button("Exemplares");
         btnExemplar.setMinWidth(125);
         btnExemplar.setOnAction(e->
                 MainBiblioteca.scnPrincipal
-                        .setRoot(menuControler.crudExemplar()));
+                        .setRoot(btnLateralControler.crudExemplar()));
 
         btnLivro = new Button("Livros");
         btnLivro.setMinWidth(125);
         btnLivro.setOnAction(e-> MainBiblioteca
                 .scnPrincipal
-                .setRoot(menuControler.crudLivros()));
+                .setRoot(btnLateralControler.crudLivros()));
 
         btnFuncionario = new Button("Funcionarios");
         btnFuncionario.setMinWidth(125);
         btnFuncionario.setOnAction(e-> MainBiblioteca
                 .scnPrincipal
-                .setRoot(menuControler.crudFuncionario()));
-
-        btnGenero = new Button("Generos");
-        btnGenero.setMinWidth(125);
-        //btnExemplar.setOnAction(e-> MainBiblioteca.scnPrincipal.setRoot);
+                .setRoot(btnLateralControler.crudFuncionario()));
 
         btnEditora = new Button("Editoras");
         btnEditora.setMinWidth(125);
         btnEditora.setOnAction(e-> MainBiblioteca
                 .scnPrincipal
-                .setRoot(menuControler.crudEditora()));
+                .setRoot(btnLateralControler.crudEditora()));
 
         btnAutor = new Button("Autores");
         btnAutor.setMinWidth(125);
         btnAutor.setOnAction(e-> MainBiblioteca
                 .scnPrincipal
-                .setRoot(menuControler.crudAutores()));
-
-        btnConfiguracao = new Button("Configurações");
-        btnConfiguracao.setMinWidth(125);
-        btnConfiguracao.setOnAction(e-> MainBiblioteca
-                .scnPrincipal
-                .setRoot(menuControler.crudConfiguracao()));
+                .setRoot(btnLateralControler.crudAutores()));
 
         VBox layoutMenuLateral = new VBox(15);
         layoutMenuLateral.setBorder(new Border(
@@ -84,8 +74,8 @@ public class BotoesLaterais {
                         BorderWidths.DEFAULT)));
         layoutMenuLateral
                 .getChildren()
-                .addAll(menuIdentificacao, btnInicio, btnEmprestimo, btnCliente, btnExemplar,
-                        btnLivro, btnFuncionario, btnGenero, btnEditora, btnAutor, btnConfiguracao);
+                .addAll(menuIdentificacao, btnEmprestimo, btnCliente, btnExemplar,
+                        btnLivro, btnFuncionario, btnEditora, btnAutor);
         layoutMenuLateral.setPadding(new Insets(20,10,20,10));
 
         return layoutMenuLateral;

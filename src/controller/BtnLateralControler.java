@@ -5,20 +5,21 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-import principal.MainBiblioteca;
 
 public class BtnLateralControler {
 
+    public static BorderPane layoutPrincipal = new BorderPane();
     BotoesLaterais menuLateral = new BotoesLaterais();
     BotoesInferiores botoesCrud = new BotoesInferiores();
-    public static BorderPane layoutPrincipal = new BorderPane();
     StackPane layoutTitulo = new StackPane();
     public static Label titulo = new Label();
+    public static int locTela = 0;
 
     public BorderPane crudEmprestimo(){
         TelaCadEmprestimo telaCadEmprestimo = new TelaCadEmprestimo();
 
         titulo.setText("EMPRESTIMO");
+        locTela = 2;
         layoutTitulo.getChildren().add(titulo);
         layoutPrincipal.setPadding(new Insets(40));
         layoutPrincipal.setTop(layoutTitulo);
@@ -33,6 +34,7 @@ public class BtnLateralControler {
         TelaCadCliente telaCadCliente = new TelaCadCliente();
 
         titulo.setText("CLIENTE");
+        locTela = 3;
         layoutTitulo.getChildren().add(titulo);
         layoutPrincipal.setPadding(new Insets(40));
         layoutPrincipal.setTop(layoutTitulo);
@@ -47,6 +49,7 @@ public class BtnLateralControler {
         TelaCadExemplar telaCadExemplar = new TelaCadExemplar();
 
         titulo.setText("EXEMPLAR");
+        locTela = 4;
         layoutTitulo.getChildren().add(titulo);
         layoutPrincipal.setPadding(new Insets(40));
         layoutPrincipal.setTop(layoutTitulo);
@@ -61,6 +64,7 @@ public class BtnLateralControler {
         TelaCadLivro telaCadLivros = new TelaCadLivro();
 
         titulo.setText("LIVROS");
+        locTela = 5;
         layoutTitulo.getChildren().add(titulo);
         layoutPrincipal.setPadding(new Insets(40));
         layoutPrincipal.setTop(layoutTitulo);
@@ -75,6 +79,7 @@ public class BtnLateralControler {
         TelaCadFuncionario telaCadFuncionario = new TelaCadFuncionario();
 
         titulo.setText("FUNCIONARIOS");
+        locTela = 6;
         layoutTitulo.getChildren().add(titulo);
         layoutPrincipal.setPadding(new Insets(40));
         layoutPrincipal.setTop(layoutTitulo);
@@ -89,6 +94,7 @@ public class BtnLateralControler {
         TelaCadEditora telaCadEditora = new TelaCadEditora();
 
         titulo.setText("EDITORA");
+        locTela = 7;
         layoutTitulo.getChildren().add(titulo);
         layoutPrincipal.setPadding(new Insets(40));
         layoutPrincipal.setTop(layoutTitulo);
@@ -103,6 +109,7 @@ public class BtnLateralControler {
         TelaCadAutores telaCadAutores = new TelaCadAutores();
 
         titulo.setText("AUTORES");
+        locTela = 8;
         layoutTitulo.getChildren().add(titulo);
         layoutPrincipal.setPadding(new Insets(40));
         layoutPrincipal.setTop(layoutTitulo);

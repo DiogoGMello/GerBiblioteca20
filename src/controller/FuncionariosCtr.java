@@ -1,20 +1,35 @@
 package controller;
 
+import boundery.TelaCadFuncionario;
 import model.bean.Funcionario;
+import model.dao.FuncionarioDao;
 
 public class FuncionariosCtr {
+    TelaCadFuncionario telaCadFuncionario = new TelaCadFuncionario();
+    FuncionarioDao funcionarioDao = new FuncionarioDao();
 
-    public void salvaFuncionario(Funcionario exemplar){
-
+    public void pesqCtrlFuncionario(Funcionario funcionario){
+        telaCadFuncionario.setTelaFuncionario(
+                funcionarioDao.pesquisaFuncionarioBD(funcionario)
+        );
     }
 
-    public Funcionario pesqFuncionario(int id){
-        Funcionario funcionario = new Funcionario();
+    public void salvaFuncionario(Funcionario funcionario){
 
-        return funcionario;
+        telaCadFuncionario.setTelaFuncionario(
+                funcionarioDao.createOrUpdateFuncionario(funcionario)
+        );
     }
 
-    public void deletaEFuncionario(int id){
+    public void editaFuncionario(Funcionario funcionario){
+        //Salva o funcionario de acordo com o id
+        //funcionario = funcionarioDao.editaFuncionario(funcionario);
+        System.out.println("Edita funcionario corretamente");
+        telaCadFuncionario.setTelaFuncionario(funcionario);
+    }
 
+    public void limpaFuncionario(){
+        System.out.println("Limpa funcionario ok");
+        telaCadFuncionario.restartCrudFuncionario();
     }
 }

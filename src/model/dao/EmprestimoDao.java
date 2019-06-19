@@ -15,7 +15,7 @@ public class EmprestimoDao {
     private Connection con = null;
 
     public EmprestimoDao(){
-        con = ConnectionFactory.getConnection();
+        //con = ConnectionFactory.getConnection();
     }
 
     //ir� inserir um novo campo no banco de dados
@@ -43,7 +43,7 @@ public class EmprestimoDao {
             return false;
         }finally{
 
-            ConnectionFactory.closeConnection(con, stmt);
+            //ConnectionFactory.closeConnection(con, stmt);
 
         }
     }
@@ -72,7 +72,7 @@ public class EmprestimoDao {
 
         }finally{
 
-            ConnectionFactory.closeConnection(con, stmt);
+            //ConnectionFactory.closeConnection(con, stmt);
         }
     }
 

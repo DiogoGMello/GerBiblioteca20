@@ -1,73 +1,81 @@
 package controller;
 
+import boundery.*;
+import model.bean.*;
+
+import java.text.ParseException;
+
 public class BtnInferioresCtr {
 
     EmprestimoCtr emprestimoCtr = new EmprestimoCtr();
+    TelaCadEmprestimo telaCadEmprestimo = new TelaCadEmprestimo();
+
     ClienteCtr clienteCtr = new ClienteCtr();
+    TelaCadCliente telaCadCliente = new TelaCadCliente();
+
     ExemplaresCtr exemplaresCtr = new ExemplaresCtr();
+    TelaCadExemplar telaCadExemplar = new TelaCadExemplar();
+
     LivrosCtr livrosCtr = new LivrosCtr();
+    TelaCadLivro telaCadLivro = new TelaCadLivro();
+
     FuncionariosCtr funcionariosCtr = new FuncionariosCtr();
+    TelaCadFuncionario telaCadFuncionario = new TelaCadFuncionario();
+
     EditoraCtr editoraCtr = new EditoraCtr();
+    TelaCadEditora telaCadEditora = new TelaCadEditora();
+
     AutorCtr autorCtr = new AutorCtr();
+    TelaCadAutores telaCadAutores = new TelaCadAutores();
 
-    public void funcaoSalvar(){
-        switch(BtnLateralControler.titulo.getText()){
-            case "EMPRESTIMO":
+    public void funcaoSalvar() throws ParseException {
+        switch(BtnLateralControler.locTela){
+            case 2:
+                emprestimoCtr.salvaEmprestimo(telaCadEmprestimo.coletaEmprestimo());
                 break;
-            case "CLIENTE":
-                clienteCtr.salvaCliente();
+            case 3:
+                clienteCtr.salvaCliente(telaCadCliente.coletaCliente());
                 break;
-            case "EXEMPLAR":
+            case 4:
+                exemplaresCtr.salvaExemplar(telaCadExemplar.coletaExemplar());
                 break;
-            case "LIVROS":
+            case 5:
+                livrosCtr.salvaLivro(telaCadLivro.coletaLivro());
                 break;
-            case "FUNCIONARIOS":
+            case 6:
+                funcionariosCtr.salvaFuncionario(telaCadFuncionario.coletaFuncionario());
                 break;
-            case "EDITORA":
+            case 7:
+                editoraCtr.salvaEditora(telaCadEditora.coletaEditora());
                 break;
-            case "AUTORES":
-                autorCtr.salvarAutor();
-                break;
-        }
-
-    }
-
-    public void funcaoNovo(){
-        switch(BtnLateralControler.titulo.getText()){
-            case "EMPRESTIMO":
-
-                break;
-            case "CLIENTE":
-                break;
-            case "EXEMPLAR":
-                break;
-            case "LIVROS":
-                break;
-            case "FUNCIONARIOS":
-                break;
-            case "EDITORA":
-                break;
-            case "AUTORES":
+            case 8:
+                autorCtr.salvaAutor(telaCadAutores.coletaAutor());
                 break;
         }
     }
 
-    public void funcaoDeletar(){
-        switch(BtnLateralControler.titulo.getText()){
-            case "EMPRESTIMO":
-
+    public void funcaoLimpar(){
+        switch(BtnLateralControler.locTela){
+            case 2:
+                exemplaresCtr.limpaExemplar();
                 break;
-            case "CLIENTE":
+            case 3:
+                clienteCtr.limpaCliente();
                 break;
-            case "EXEMPLAR":
+            case 4:
+                exemplaresCtr.limpaExemplar();
                 break;
-            case "LIVROS":
+            case 5:
+                livrosCtr.limpaLivro();
                 break;
-            case "FUNCIONARIOS":
+            case 6:
+                funcionariosCtr.limpaFuncionario();
                 break;
-            case "EDITORA":
+            case 7:
+                editoraCtr.limpaEditora();
                 break;
-            case "AUTORES":
+            case 8:
+                autorCtr.limpaAutor();
                 break;
         }
     }

@@ -6,20 +6,36 @@ public class Pessoa {
     private int idPessoa;
     private String nome;
     private String endereco;
-    private int numeroEndereco;
+    private String numeroEndereco;
+    private String complemento;
     private String bairro;
-    private int cep;
+    private String cep;
     private String cidade;
     private String estado;
     private String telefone;
-    private int cpf;
+    private String cpf;
+    private Boolean status;
 
-    public int getNumeroEndereco() {
+    public Boolean getStatus() { return this.status; };
+
+    public void setStatus(Boolean status) { this.status = status; }
+
+    public String getNumeroEndereco() {
         return numeroEndereco;
     }
 
-    public void setNumeroEndereco(int numeroEndereco) {
+    public void setNumeroEndereco(String numeroEndereco) {
         this.numeroEndereco = numeroEndereco;
+    }
+
+    public String getComplemento()
+    {
+        return this.complemento;
+    }
+
+    public void setComplemento(String complemento)
+    {
+        this.complemento = complemento;
     }
 
     public String getBairro() {
@@ -30,11 +46,11 @@ public class Pessoa {
         this.bairro = bairro;
     }
 
-    public int getCep() {
+    public String getCep() {
         return cep;
     }
 
-    public void setCep(int cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 
@@ -53,17 +69,6 @@ public class Pessoa {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    private String status;
-    private Date dataMatricula;
 
     public int getIdPessoa() {
         return idPessoa;
@@ -97,22 +102,12 @@ public class Pessoa {
         this.telefone = telefone;
     }
 
-    public int getCpf() {
-        return cpf;
+    public String getCpf() {
+        return this.cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    public Date getDataMatricula() {
-        return dataMatricula;
-    }
-
-    public void setDataMatricula(Date dataMatricula) {
-        this.dataMatricula = dataMatricula;
-    }
-
-    public Pessoa(){
-    }
 }

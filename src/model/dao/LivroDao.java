@@ -1,102 +1,149 @@
 package model.dao;
 
 import connection.ConnectionFactory;
+import model.bean.Editora;
 import model.bean.Livro;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LivroDao {
+    //irá inserir um novo campo no banco de dados
+    public Livro createOrUpdateLivroBD(Livro livro) {
 
-    private Connection con = null;
-
-    public LivroDao(){
-        con = ConnectionFactory.getConnection();
-    }
-
-    //ir� inserir um novo campo no banco de dados
-    public boolean salvarLivroBD(Livro livro){
-
-        String sql = "INSERT INTO livro () VALUES ()";
-
+        Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
 
-        try{
-            stmt = con.prepareStatement(sql);
+        try {
 
-//            stmt.setString(1, livro.());
-//            stmt.setString(2, livro.());
-//            stmt.setString(3, livro.());
+            if (livro.getIdLivro() > 0) {
+                System.out.println("vai editar");
+                stmt = con.prepareStatement(
+                        "UPDATE livros SET titulo=?, subtitulo=?, autor=?, sinopse=?, genero=?, editora=?, isbn=?, edicao=?, ano=? WHERE id =?",
+                        Statement.RETURN_GENERATED_KEYS
+                );
+                stmt.setInt(10, livro.getIdLivro());
+
+            } else {
+                System.out.println("vai salvar");
+                stmt = con.prepareStatement(
+                        "INSERT INTO livros (titulo, subtitulo, autor, sinopse, genero, editora, isbn, edicao, ano, data_cadastro, status)"
+                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+                        Statement.RETURN_GENERATED_KEYS
+                );
+                stmt.setDate(10, Date.valueOf(LocalDate.now()));
+                stmt.setInt(11, 1);
+            }
+
+            stmt.setString(1, livro.getTitulo());
+            stmt.setString(2, livro.getSubTitulo());
+            stmt.setString(3, livro.getAutor());
+            stmt.setString(4, livro.getSinopse());
+            stmt.setString(5, livro.getGenero());
+            stmt.setString(6, livro.getEditora());
+            stmt.setString(7, livro.getISBN());
+            stmt.setString(8, livro.getEdicao());
+            stmt.setString(9, livro.getAno());
 
             stmt.executeUpdate();
 
-            return true;
+            ResultSet rs = stmt.getGeneratedKeys();
 
-        }catch (SQLException ex){
+            if(rs.next()) {
+                livro.setIdLivro(rs.getInt(1));
+            }
 
-            System.err.println("Erro: " + ex);
+            return livro;
 
-            return false;
-        }finally{
-
-            ConnectionFactory.closeConnection(con, stmt);
-
-        }
-    }
-
-    //Ir� atualizar o registro do livro
-    public boolean alterarLivroBD(Livro livro){
-
-        String sql = "UPDATE livro SET nome = ?, endereco = ?, telefone = ? WHERE cliente_ID = ?";
-
-        PreparedStatement stmt = null;
-
-        try{
-            stmt = con.prepareStatement(sql);
-
-//            stmt.setString(1, livro.());
-//            stmt.setString(2, livro.());
-//            stmt.setString(3, livro.e());
-//            stmt.setInt(4, livro.());
-
-            return true;
-
-        }catch(SQLException ex){
-
-            System.err.println("Error: "+ex);
-            return false;
-
-        }finally{
-
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return livro;
+        } finally {
             ConnectionFactory.closeConnection(con, stmt);
         }
+
     }
 
-    //Buscar todos os registros de livro da tabela
-    public List<Livro> encontrarLivroBDTodos(){
-
-        String sql = "SELECT * FROM livro";
+    //irá listar todos os autores na tabela
+    public List<Livro> listarAutoresBD(){
+        Connection con = ConnectionFactory.getConnection();
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
+        List<Livro> listaLivros = new ArrayList<>();
 
-        List<Livro> livro = new ArrayList<>();
+        try {
+            stmt = con.prepareStatement("SELECT * FROM livros");
+            rs = stmt.executeQuery();
 
-        return livro;
+            while (rs.next()){
+                Livro livro = new Livro();
+            //    Autor autor = new Autor();
+                Editora editora = new Editora();
+
+                livro.setTitulo(rs.getString("titulo"));
+                livro.setSubTitulo(rs.getString("subtitulo"));
+                //Precisa verificar como faz que eu não sei
+                //livro.setAutor(autor.setIdAutor(rs.getInt("autor")));
+                livro.setSinopse(rs.getString("sinopse"));
+                livro.setGenero(rs.getString("genero"));
+                //O mesmo para a editora
+                //livro.setEditora(editora.setIdEditora(rs.getInt("editora")));
+                livro.setISBN(rs.getString("isbn"));
+                livro.setAno(rs.getString("ano"));
+                livro.setIdLivro(rs.getInt("id"));
+
+                listaLivros.add(livro);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+
+        return listaLivros;
     }
 
-    public Livro encontrarLivroID(int id) {
-        String sql = "SELECT * FROM livro ";
+    //irá pesquisar um unico autor
+    public Livro pesquisaLivroBD(String titulo, String subtitulo)
+    {
+        Connection con = ConnectionFactory.getConnection();
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
-
         Livro livro = new Livro();
+
+        try {
+            stmt = con.prepareStatement("SELECT * FROM livros WHERE titulo = ? or subtitulo = ?");
+
+            stmt.setString(1, titulo);
+            stmt.setString(2, subtitulo);
+            rs = stmt.executeQuery();
+
+            if(rs.next()) {
+                livro.setTitulo(rs.getString("titulo"));
+                livro.setSubTitulo(rs.getString("subtitulo"));
+                livro.setAutor(rs.getString("autor"));
+                livro.setSinopse(rs.getString("sinopse"));
+                livro.setEditora(rs.getString("editora"));
+                livro.setEdicao(rs.getString("edicao"));
+                livro.setGenero(rs.getString("genero"));
+                livro.setISBN(rs.getString("isbn"));
+                livro.setAno(rs.getString("ano"));
+                livro.setIdLivro(rs.getInt("id"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
         return livro;
     }
+
+
 }
 

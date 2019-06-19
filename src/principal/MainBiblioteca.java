@@ -21,7 +21,7 @@ public class MainBiblioteca extends Application {
 
         TelaLogin telaLogin = new TelaLogin();
 
-        scnPrincipal = new Scene(telaLogin.geraTelaLogin(), 1000, 550);
+        scnPrincipal = new Scene(telaLogin.geraTelaLogin(""), 1000, 550);
 
         window.setScene(scnPrincipal);
         window.show();

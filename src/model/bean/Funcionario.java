@@ -1,14 +1,22 @@
 package model.bean;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Funcionario extends Pessoa{
     private int idFuncionario;
-    private int pessoaID;
     private Date dataInicioContrato;
     private Date dataTerminoContrato;
 
     public Funcionario(){
+        idFuncionario = 0;
+        setNome("Não cadastrado");
+        setCpf("");
+        setEndereco("Não cadastrado");
+        setNumeroEndereco("");
+        setBairro("Não cadastrado");
+        setCep("");
+        setCidade("Não cadastrado");
+        setEstado("Não cadastrado");
     }
 
     public int getIdFuncionario() {
@@ -17,14 +25,6 @@ public class Funcionario extends Pessoa{
 
     public void setIdFuncionario(int idFuncionario) {
         this.idFuncionario = idFuncionario;
-    }
-
-    public int getPessoaID() {
-        return pessoaID;
-    }
-
-    public void setPessoaID(int pessoaID) {
-        this.pessoaID = pessoaID;
     }
 
     public Date getDataInicioContrato() {
@@ -41,6 +41,23 @@ public class Funcionario extends Pessoa{
 
     public void setDataTerminoContrato(Date dataTerminoContrato) {
         this.dataTerminoContrato = dataTerminoContrato;
+    }
+
+    @Override
+    public String toString(){
+        String dev = "fim";
+
+        System.out.println(idFuncionario);
+        System.out.println(getNome());
+        System.out.println(getCpf());
+        System.out.println(getEndereco());
+        System.out.println(getNumeroEndereco());
+        System.out.println(getBairro());
+        System.out.println(getCep());
+        System.out.println(getCidade());
+        System.out.println(getEstado());
+
+        return dev;
     }
 
 }

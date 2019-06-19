@@ -1,5 +1,7 @@
 package model.bean;
 
+import java.util.Date;
+
 public class Editora {
 
     private int idEditora;
@@ -9,8 +11,52 @@ public class Editora {
     private String contatoRevendedor;
     private String email;
     private String emailRevendedor;
+    private Date dataCriacao;
+    private boolean status;
 
     public Editora(){
+        idEditora = 0;
+        nome = "Não Cadastrado";
+        revendedor = "Não Cadastrado";
+        contato = "Não Cadastrado";
+        contatoRevendedor = "Não Cadastrado";
+        email = "Não Cadastrado";
+        emailRevendedor = "Não Cadastrado";
+    }
+
+    @Override
+    public String toString(){
+        String dev = "fim";
+
+        System.out.println(idEditora);
+        System.out.println(nome);
+        System.out.println(revendedor);
+        System.out.println(contato);
+        System.out.println(contatoRevendedor);
+        System.out.println(email);
+        System.out.println(emailRevendedor);
+
+        return dev;
+    }
+
+    public boolean getStatus()
+    {
+        return this.status;
+    }
+
+    public void setStatus(boolean status)
+    {
+        this.status = status;
+    }
+
+    public Date getDataCriacao()
+    {
+        return this.dataCriacao;
+    }
+
+    public void setDataCriacao(Date dataCriacao)
+    {
+        this.dataCriacao = dataCriacao;
     }
 
     public int getIdEditora() {

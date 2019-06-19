@@ -1,5 +1,8 @@
 package boundery;
 
+import controller.AutorCtr;
+import controller.EditoraCtr;
+import controller.LivrosCtr;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.NodeOrientation;
@@ -18,12 +21,22 @@ public class TelaCadLivro{
     Label lblPesquisa, lblPesqTitulo, lblPesqSubtitulo, lblCadastro, lblID, lblGenero, lblTitulo,
             lblSubtitulo, lblAutor, lblEditora, lblSinopse, lblISBN, lblEdicao, lblAno;
 
-    TextField txtPesqTitulo, txtPesqSubtitulo, txtID, txtGenero, txtTitulo, txtSubtitulo, txtAutor, txtEditora,
-            txtISBN, txtEdicao, txtAno;
+    static Label txtID;
 
-    TextArea txtSinopse;
+    static TextField txtPesqTitulo, txtPesqSubtitulo, txtGenero, txtTitulo, txtSubtitulo, txtAutor,
+            txtEditora, txtISBN, txtEdicao, txtAno;
 
-    Button btnPesquiar;
+    static TextArea txtSinopse;
+
+//    static Autor autorTela = new Autor();
+//    static Editora editoraTela = new Editora();
+
+    AutorCtr autorCtr = new AutorCtr();
+    EditoraCtr editoraCtr = new EditoraCtr();
+
+    int idAutor, idEditora;
+
+    Button btnPesquiar, btnPesqAutor, btnPesEditora;
 
     public VBox geraCrudLivro(){
 
@@ -42,6 +55,8 @@ public class TelaCadLivro{
         layoutPesquisa.setBorder(new Border(new BorderStroke(Color.BLACK,
                 BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
+        LivrosCtr livrosClt = new LivrosCtr();
+
         //Campos Pesquisa
         lblPesquisa = new Label("PESQUISA");
 
@@ -51,14 +66,19 @@ public class TelaCadLivro{
         txtPesqSubtitulo = new TextField();
         btnPesquiar = new Button("Search");
 
-        layoutPesquisa.getChildren().addAll(lblPesqTitulo, txtPesqTitulo, lblPesqSubtitulo, txtPesqSubtitulo, btnPesquiar);
+        layoutPesquisa.getChildren().addAll(lblPesqTitulo, txtPesqTitulo,
+                lblPesqSubtitulo, txtPesqSubtitulo, btnPesquiar);
+
+        btnPesquiar.setOnAction(e->{
+            livrosClt.pesqCtrlLivro(pesqLivro());
+        });
 
         //Campos de cadastro
         lblCadastro = new Label("CADASTRO");
 
         lblID = new Label("ID");
         layoutCentral.setConstraints(lblID, 0, 0);
-        txtID = new TextField();
+        txtID = new Label("0");
         layoutCentral.setConstraints(txtID, 1,0);
         lblGenero = new Label("Genero");
         layoutCentral.setConstraints(lblGenero, 2, 0);
@@ -79,33 +99,34 @@ public class TelaCadLivro{
         layoutCentral.setConstraints(lblAutor, 0, 3);
         txtAutor = new TextField();
         layoutCentral.setConstraints(txtAutor, 1,3);
+
         lblEditora = new Label("Editora");
-        layoutCentral.setConstraints(lblEditora, 2, 3);
+        layoutCentral.setConstraints(lblEditora, 0, 4);
         txtEditora = new TextField();
-        layoutCentral.setConstraints(txtEditora,3,3);
+        layoutCentral.setConstraints(txtEditora,1,4);
 
         lblSinopse = new Label("Sinopse");
-        layoutCentral.setConstraints(lblSinopse, 0, 4);
+        layoutCentral.setConstraints(lblSinopse, 0, 5);
         txtSinopse = new TextArea();
-        layoutCentral.setConstraints(txtSinopse, 1,4);
+        layoutCentral.setConstraints(txtSinopse, 1,5);
 
         lblISBN = new Label("ISBN");
-        layoutCentral.setConstraints(lblISBN, 0, 5);
+        layoutCentral.setConstraints(lblISBN, 0, 6);
         txtISBN = new TextField();
-        layoutCentral.setConstraints(txtISBN, 1,5);
+        layoutCentral.setConstraints(txtISBN, 1,6);
         lblAno = new Label("Ano");
-        layoutCentral.setConstraints(lblAno, 2, 5);
+        layoutCentral.setConstraints(lblAno, 2, 6);
         txtAno = new TextField();
-        layoutCentral.setConstraints(txtAno, 3,5);
+        layoutCentral.setConstraints(txtAno, 3,6);
 
         lblEdicao = new Label("Edição");
-        layoutCentral.setConstraints(lblEdicao, 0, 6);
+        layoutCentral.setConstraints(lblEdicao, 0, 7);
         txtEdicao = new TextField();
-        layoutCentral.setConstraints(txtEdicao, 1,6);
+        layoutCentral.setConstraints(txtEdicao, 1,7);
 
         layoutCentral.getChildren().addAll(lblPesquisa, lblID, txtID, lblGenero, txtGenero, lblTitulo, txtTitulo,
-                lblSubtitulo, txtSubtitulo, lblAutor, txtAutor, lblEditora, txtEditora, lblSinopse, txtSinopse,
-                lblISBN, txtISBN, lblEdicao, txtEdicao, lblAno, txtAno);
+                lblSubtitulo, txtSubtitulo, lblAutor, txtAutor, lblEditora, txtEditora,
+                lblSinopse, txtSinopse, lblISBN, txtISBN, lblEdicao, txtEdicao, lblAno, txtAno);
 
         layoutOrganizacao.getChildren().addAll(lblPesquisa, layoutPesquisa, lblCadastro, layoutCentral);
 
@@ -114,17 +135,55 @@ public class TelaCadLivro{
 
     public Livro coletaLivro(){
         Livro livro = new Livro();
-
         livro.setIdLivro(Integer.parseInt(txtID.getText()));
         livro.setGenero(txtGenero.getText());
         livro.setTitulo(txtTitulo.getText());
-        livro.setSubTitulo(txtTitulo.getText());
-        livro.setAutorID(Integer.parseInt(txtAutor.getText()));
-        livro.setEditoraID(Integer.parseInt(txtEditora.getText()));
+        livro.setSubTitulo(txtSubtitulo.getText());
+        livro.setAutor(txtAutor.getText());
+        livro.setEditora(txtEditora.getText());
         livro.setSinopse(txtSinopse.getText());
         livro.setISBN(txtISBN.getText());
-        livro.setEdicao(Integer.parseInt(txtEdicao.getText()));
-        livro.setAno(Integer.parseInt(txtAno.getText()));
+        livro.setEdicao(txtEdicao.getText());
+        livro.setAno(txtAno.getText());
+
+        return livro;
+    }
+
+    public void setTelaLivro(Livro livro){
+        txtPesqTitulo.setText("");
+        txtPesqSubtitulo.setText("");
+        txtID.setText(Integer.toString(livro.getIdLivro()));
+        txtGenero.setText(livro.getGenero());
+        txtTitulo.setText(livro.getTitulo());
+        txtSubtitulo.setText(livro.getSubTitulo());
+        txtAutor.setText(livro.getAutor());
+        txtEditora.setText(livro.getEditora());
+        txtSinopse.setText(livro.getSinopse());
+        txtISBN.setText(livro.getISBN());
+        txtAno.setText(livro.getAno());
+        txtEdicao.setText(livro.getEdicao());
+    }
+
+    public void restartCrudLivro(){
+        txtPesqTitulo.setText("");
+        txtPesqSubtitulo.setText("");
+        txtID.setText("");
+        txtGenero.setText("");
+        txtTitulo.setText("");
+        txtSubtitulo.setText("");
+        txtAutor.setText("");
+        txtEditora.setText("");
+        txtSinopse.setText("");
+        txtISBN.setText("");
+        txtAno.setText("");
+        txtEdicao.setText("");
+    }
+
+    public Livro pesqLivro(){
+        Livro livro = new Livro();
+
+        livro.setTitulo(txtPesqTitulo.getText());
+        livro.setSubTitulo(txtPesqSubtitulo.getText());
 
         return livro;
     }

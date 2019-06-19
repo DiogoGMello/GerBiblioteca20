@@ -1,29 +1,36 @@
 package boundery;
 
+import controller.ExemplaresCtr;
 import controller.LivrosCtr;
-import javafx.application.Application;
 import javafx.geometry.Insets;
-import javafx.geometry.NodeOrientation;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 import model.bean.Exemplar;
 import model.bean.Livro;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class TelaCadExemplar{
-    Label lblPesquisa, lblPesqTitulo, lblPesqSubtitulo, lblCadastro, lblID, lblLivroID, lblTitulo,
+
+    Label lblPesquisa, lblPesqTitulo, lblPesqSubtitulo, lblCadastro, lblID, lblTitulo,
             lblSubtitulo, lblNSerie, lblCondicao, lblStatus, lblEmprestimoID, lblDtAquisicao, lblDtRemocao;
 
-    TextField txtPesqTitulo, txtPesqSubtitulo, txtID, txtLivroID, txtTitulo, txtSubtitulo, txtNSerie, txtCondicao,
+    static TextField txtPesqTitulo, txtPesqSubtitulo, txtID, txtTitulo, txtSubtitulo, txtNSerie, txtCondicao,
             txtStatus, txtEmprestimoID, txtDtAquisicao, txtDtRemocao;
+
+    static Livro livro = new Livro();
+    static Exemplar exemplar = new Exemplar();
 
     Button btnPesquisar, btnPesqLivro;
 
     public VBox geraCrudExemplar(){
+        ExemplaresCtr exemplaresCtr = new ExemplaresCtr();
+        LivrosCtr livrosCtr = new LivrosCtr();
 
         GridPane layoutCentral = new GridPane();
         layoutCentral.setPadding(new Insets(10));
@@ -47,9 +54,19 @@ public class TelaCadExemplar{
         txtPesqTitulo = new TextField();
         lblPesqSubtitulo = new Label("Subtitulo");
         txtPesqSubtitulo = new TextField();
-        btnPesquisar = new Button("Search");
+        btnPesquisar = new Button("Search Exemplar");
+        btnPesquisar.setOnAction(e->{
+            exemplar = exemplaresCtr.pesqCtrlExemplar(pesqLivro());
+            setTelaExemplar(exemplar);
+        });
+        btnPesqLivro = new Button("Pesq Teit/Sub Livro");
+        btnPesqLivro.setOnAction(e-> {
+            livro = livrosCtr.pesqCtrlLivro(pesqLivro());
+            setItensLivro(livro);
+        });
 
-        layoutPesquisa.getChildren().addAll(lblPesqTitulo, txtPesqTitulo, lblPesqSubtitulo, txtPesqSubtitulo, btnPesquisar);
+        layoutPesquisa.getChildren().addAll(lblPesqTitulo, txtPesqTitulo, lblPesqSubtitulo, txtPesqSubtitulo,
+                btnPesquisar, btnPesqLivro);
 
         //Campos de cadastro
         lblCadastro = new Label("CADASTRO");
@@ -58,12 +75,6 @@ public class TelaCadExemplar{
         layoutCentral.setConstraints(lblID, 0, 0);
         txtID = new TextField();
         layoutCentral.setConstraints(txtID, 1,0);
-        lblLivroID = new Label("Livro ID");
-        layoutCentral.setConstraints(lblLivroID, 2, 0);
-        txtLivroID = new TextField();
-        layoutCentral.setConstraints(txtLivroID, 3,0);
-        btnPesqLivro = new Button("Pesq Livro");
-        layoutCentral.setConstraints(btnPesqLivro, 4,0);
 
         lblTitulo = new Label("Titulo");
         layoutCentral.setConstraints(lblTitulo, 0, 1);
@@ -103,27 +114,100 @@ public class TelaCadExemplar{
         txtDtRemocao = new TextField();
         layoutCentral.setConstraints(txtDtRemocao, 3,6);
 
-        layoutCentral.getChildren().addAll(lblPesquisa, lblID, txtID, lblLivroID, txtLivroID, btnPesqLivro,
-                lblTitulo, txtTitulo, lblSubtitulo, txtSubtitulo, lblNSerie, txtNSerie, lblCondicao, txtCondicao,
-                lblStatus, txtStatus, lblEmprestimoID, txtEmprestimoID, lblDtAquisicao, txtDtAquisicao,
-                lblDtRemocao, txtDtRemocao);
+        layoutCentral.getChildren().addAll(
+                lblID, txtID,
+                lblTitulo, txtTitulo,
+                lblSubtitulo, txtSubtitulo,
+                lblNSerie, txtNSerie,
+                lblCondicao, txtCondicao,
+                lblStatus, txtStatus, lblEmprestimoID, txtEmprestimoID,
+                lblDtAquisicao, txtDtAquisicao, lblDtRemocao, txtDtRemocao);
 
         layoutPrincipal.getChildren().addAll(lblPesquisa, layoutPesquisa, lblCadastro, layoutCentral);
 
         return layoutPrincipal;
     }
 
-    public Exemplar coletaExemplar(){
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+    public Exemplar coletaExemplar() throws ParseException {
         Exemplar exemplar = new Exemplar();
-        Livro livro = new Livro();
         LivrosCtr livrosCtr = new LivrosCtr();
 
-        exemplar.setIdExemplar(Integer.parseInt(txtID.getText()));
-        exemplar.setLivro(livrosCtr.pesqLivro(Integer.parseInt(txtLivroID.getText())));
+        exemplar.setLivro(livro);
         exemplar.setNumSerie(Integer.parseInt(txtNSerie.getText()));
         exemplar.setConservacao(txtCondicao.getText());
         exemplar.setStatusExemplar(Boolean.parseBoolean(txtStatus.getText()));
         //Tratar data aquisição e remoção
+        try{
+            Date formatDate = sdf.parse(txtDtAquisicao.getText());
+            exemplar.setDataEntrada(formatDate);
+
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
         return exemplar;
+    }
+
+    public Exemplar colEditarExemplar(){
+        Exemplar exemplar = new Exemplar();
+
+        try{
+            exemplar = coletaExemplar();
+        } catch (ParseException e){
+            e.printStackTrace();
+        }
+
+        exemplar.setIdExemplar(Integer.parseInt(txtID.getText()));
+
+        return exemplar;
+    }
+
+    public void setTelaExemplar(Exemplar exemplar){
+
+        txtPesqTitulo.setText("");
+        txtPesqSubtitulo.setText("");
+        txtID.setText(Integer.toString(exemplar.getIdExemplar()));
+        txtTitulo.setText(exemplar.getLivro().getTitulo());
+        txtSubtitulo.setText(exemplar.getLivro().getSubTitulo());
+        txtNSerie.setText(Integer.toString(exemplar.getNumSerie()));
+        txtCondicao.setText(exemplar.getConservacao());
+        txtStatus.setText("");
+        txtEmprestimoID.setText("");
+
+        Date dataFormat = exemplar.getDataEntrada();
+        String dataString = dataFormat.toString();
+        txtDtAquisicao.setText(dataString);
+
+        txtDtRemocao.setText("");
+    }
+
+    public void restartCrudExemplar(){
+
+        txtPesqTitulo.setText("");
+        txtPesqSubtitulo.setText("");
+        txtID.setText("");
+        txtTitulo.setText("");
+        txtSubtitulo.setText("");
+        txtNSerie.setText("");
+        txtCondicao.setText("");
+        txtStatus.setText("");
+        txtEmprestimoID.setText("");
+        txtDtAquisicao.setText("");
+        txtDtRemocao.setText("");
+
+    }
+
+    public Livro pesqLivro(){
+
+        livro.setTitulo(txtPesqTitulo.getText());
+        livro.setSubTitulo(txtPesqSubtitulo.getText());
+
+        return livro;
+    }
+
+    void setItensLivro(Livro livro){
+        txtTitulo.setText(livro.getTitulo());
+        txtSubtitulo.setText(livro.getSubTitulo());
     }
 }

@@ -9,32 +9,19 @@ import java.util.List;
 
 public class AutorCtr {
 
-    Autor autor = new Autor();
-    AutorDao procAutor = new AutorDao();
+    AutorDao autorDao = new AutorDao();
     TelaCadAutores tela = new TelaCadAutores();
 
-    public void salvarAutor(){
-        Autor autor = new Autor();
-
-        autor = tela.coletaAutor();
-
-        procAutor.salvarAutorBD(autor);
+    public void pesqCtlrAutor(String nome){
+        tela.setTelaAutor(autorDao.pesquisaAutorBD(nome));
     }
 
-    public void deletarAutor(int id){
-        //Terá a procedure que irá Deletar o Autor
+    public void salvaAutor(Autor autor){
+        tela.setTelaAutor(autorDao.createAutorBD(autor));
     }
 
-    public Autor pesqAutorNome(String nome) {
-        List<Autor> autores = new ArrayList();
-        autores = procAutor.encontrarAutorBDTodos();
-
-        for(Autor busca : autores) {
-            if(busca.getNomeoAutor() == nome)
-                autor = busca;
-        }
-        return autor;
+    public void limpaAutor(){
+        tela.restartCrud();
+        System.out.println("Limpeza autor OK");
     }
-
-
 }

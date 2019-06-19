@@ -1,5 +1,6 @@
 package boundery;
 
+import controller.EditoraCtr;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.NodeOrientation;
@@ -18,11 +19,15 @@ public class TelaCadEditora{
 
     Label lblPesquisa, lblPesqNome, lblCadastro, lblID, lblNome, lblRevendedor, lblContato, lblContRevendedor,
             lblEmailEditora, lblEmailRevendedor;
-    TextField txtPesqNome, txtID, txtNome, txtRevendedor, txtContato, txtContRevendedor,
+
+    static Label txtID;
+
+    static TextField txtPesqNome, txtNome, txtRevendedor, txtContato, txtContRevendedor,
             txtEmailEditora, txtEmailRevendedor;
     Button btnPesquisar;
 
     public VBox geraCrudEditora(){
+        EditoraCtr editoraCtr = new EditoraCtr();
         GridPane layoutCentral = new GridPane();
         layoutCentral.setPadding(new Insets(10));
         layoutCentral.setVgap(15);
@@ -46,6 +51,7 @@ public class TelaCadEditora{
         lblPesqNome = new Label("Nome");
         txtPesqNome = new TextField();
         btnPesquisar = new Button("Search");
+        btnPesquisar.setOnAction(e -> editoraCtr.pesqCtrlEditora(pesqEditora()));
 
         layoutPesquisa.getChildren().addAll(lblPesqNome, txtPesqNome, btnPesquisar);
 
@@ -54,7 +60,7 @@ public class TelaCadEditora{
 
         lblID = new Label("ID");
         layoutCentral.setConstraints(lblID, 0, 0);
-        txtID = new TextField();
+        txtID = new Label("0");
         layoutCentral.setConstraints(txtID, 1,0);
 
         lblNome = new Label("Nome");
@@ -96,6 +102,7 @@ public class TelaCadEditora{
         return layoutPrincipal;
     }
 
+
     public Editora coletaEditora(){
         Editora editora = new Editora();
 
@@ -109,4 +116,36 @@ public class TelaCadEditora{
 
         return editora;
     }
+
+    public void setTelaEditora(Editora editora){
+
+        txtPesqNome.setText("");
+        txtID.setText(Integer.toString(editora.getIdEditora()));
+        txtNome.setText(editora.getNome());
+        txtRevendedor.setText(editora.getRevendedor());
+        txtContato.setText(editora.getContato());
+        txtContRevendedor.setText(editora.getContatoRevendedor());
+        txtEmailEditora.setText(editora.getEmail());
+        txtEmailRevendedor.setText(editora.getEmailRevendedor());
+
+    }
+
+    public void restartCrudEditora(){
+
+        txtPesqNome.setText("");
+        txtID.setText("0");
+        txtNome.setText("");
+        txtRevendedor.setText("");
+        txtContato.setText("");
+        txtContRevendedor.setText("");
+        txtEmailEditora.setText("");
+        txtEmailRevendedor.setText("");
+
+    }
+
+    public String pesqEditora(){
+
+        return txtPesqNome.getText();
+    }
+
 }

@@ -5,31 +5,43 @@ import javafx.geometry.NodeOrientation;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 
+import java.text.ParseException;
+
 public class BotoesInferiores {
 
-    Button btnSalvar, btnNovo, btnDeletar, btnVerificar;
+    Button btnSalvar, btnLimpar, btnEditar, btnVerificar;
 
     public HBox botoesCRUD(){
 
         HBox layoutBotoes = new HBox(15);
         BtnInferioresCtr btnInferioresCtrl = new BtnInferioresCtr();
-        btnNovo = new Button("Novo");
-        btnNovo.setMinWidth(100);
-        btnNovo.setOnAction(e->{
-            btnInferioresCtrl.funcaoNovo();
+        btnLimpar = new Button("Limpar");
+        btnLimpar.setMinWidth(100);
+        btnLimpar.setOnAction(e->{
+            btnInferioresCtrl.funcaoLimpar();
         });
-        btnDeletar = new Button("Deletar");
-        btnDeletar.setMinWidth(100);
-        btnDeletar.setOnAction(e->{
-            btnInferioresCtrl.funcaoDeletar();
-        });
+
+        //btnEditar = new Button("Editar");
+        //btnEditar.setMinWidth(100);
+//        btnEditar.setOnAction(e->{
+//            try {
+//                btnInferioresCtrl.funcaoEditar();
+//            } catch (ParseException ex) {
+//                ex.printStackTrace();
+//            }
+//        });
+
         btnSalvar = new Button("Salvar");
         btnSalvar.setMinWidth(100);
         btnSalvar.setOnAction(e-> {
-            btnInferioresCtrl.funcaoSalvar();
+            try {
+                btnInferioresCtrl.funcaoSalvar();
+            } catch (ParseException ex) {
+                ex.printStackTrace();
+            }
         });
 
-        layoutBotoes.getChildren().addAll(btnNovo, btnDeletar, btnSalvar);
+        layoutBotoes.getChildren().addAll(btnLimpar, btnSalvar);
         layoutBotoes.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
 
         return layoutBotoes;
@@ -39,8 +51,8 @@ public class BotoesInferiores {
 
         HBox layoutBotoes = new HBox();
 
-        btnNovo = new Button("Verificar Selecionado");
-        btnNovo.setMinWidth(100);
+        btnLimpar = new Button("Verificar Selecionado");
+        btnLimpar.setMinWidth(100);
 
         layoutBotoes.getChildren().addAll(btnVerificar);
         layoutBotoes.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);

@@ -1,4 +1,36 @@
-Coisas que ficaram faltando 26/05
+Sequencia da estrutura dos Controlers
 
-- ficou fazendo os ajustes de data do emprestimo e exemplar
-- Fazer apos ajuste dos controlers
+- Pesquisas Geral
+- Pesquisa Unitaria
+- Salvar (IDs novo coletaCliente)
+- SalvarEditar (Existente colEditarCliente)
+- Novo(Limpa os dados do Cliente atual - cleanAll)
+- Cancelar apenas retorna ao Tela inicial
+
+Sequencia de trabalho Tela
+
+-
+
+
+    public Objeto coleta(){}
+
+    public Objeto colEdita(){}
+
+    public void setTela(Objeto){}
+
+    public void restartCrud(){}
+
+    public Objeto pesq(){}
+
+    data sql = AAAA MM DD
+    data java = DD MM AAAA
+
+Sequencia de rabalho CTRL
+
+    public Objeto pesqCtrl(Objeto){}
+
+    public void salva(Objeto){}
+
+    public void edita(Objeto){}
+
+    public void limpa(){}

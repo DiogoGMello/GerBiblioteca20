@@ -8,7 +8,7 @@ import java.util.GregorianCalendar;
 public class Emprestimo {
     private int idEmprestimo;
     private Cliente cliente;
-    private Exemplar exemplar01, exemplar02, exemplar03;
+    private Exemplar exemplar, exemplar02, exemplar03;
     private Date dataEmprestimo;
     private Date dataDevEfetiva;
     private int funcionarioID;
@@ -42,12 +42,12 @@ public class Emprestimo {
         this.cliente = cliente;
     }
 
-    public Exemplar getExemplar01() {
-        return exemplar01;
+    public Exemplar getExemplar() {
+        return exemplar;
     }
 
-    public void setExemplar01(Exemplar exemplar01) {
-        this.exemplar01 = exemplar01;
+    public void setExemplar(Exemplar exemplar) {
+        this.exemplar = exemplar;
     }
 
     public Exemplar getExemplar02() {

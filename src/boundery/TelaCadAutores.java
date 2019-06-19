@@ -11,12 +11,14 @@ import model.bean.Autor;
 
 public class TelaCadAutores{
 
-    static Label lblPesquisa, lblPesqNome, lblCadastro, lblID, lblPaisOrigem, lblNome, lblEspecialidade;
-    static TextField txtPesqNome, txtID, txtPaisOrigem, txtNome, txtEspecialidade;
+    Label lblPesquisa, lblPesqNome, lblCadastro, lblID, lblPaisOrigem, lblNome, lblEspecialidade;
+    static Label txtID;
+    static TextField txtPesqNome, txtPaisOrigem, txtNome, txtEspecialidade;
     static Button btnPesquiar;
-    static AutorCtr autorController = new AutorCtr();
 
     public VBox geraCrudAutores(){
+
+        AutorCtr autorController = new AutorCtr();
 
         GridPane layoutCentral = new GridPane();
         layoutCentral.setPadding(new Insets(10));
@@ -40,7 +42,7 @@ public class TelaCadAutores{
         txtPesqNome = new TextField();
         btnPesquiar = new Button("Search");
         btnPesquiar.setOnAction(e-> {
-            autorController.pesqAutorNome(txtPesqNome.getText());
+            autorController.pesqCtlrAutor(pesqAutor());
         });
 
         layoutPesquisa.getChildren().addAll(lblPesqNome, txtPesqNome, btnPesquiar);
@@ -50,7 +52,7 @@ public class TelaCadAutores{
 
         lblID = new Label("ID");
         layoutCentral.setConstraints(lblID, 0, 0);
-        txtID = new TextField();
+        txtID = new Label("0");
         layoutCentral.setConstraints(txtID, 1,0);
 
         lblPaisOrigem = new Label("Pais de Origem");
@@ -79,11 +81,34 @@ public class TelaCadAutores{
     public Autor coletaAutor(){
         Autor autor = new Autor();
 
-        autor.setIdAutor(Integer.parseInt((txtID.getText())));
-        autor.setPaisOrigem(txtPaisOrigem.getText());
+        autor.setIdAutor(Integer.parseInt(txtID.getText()));
         autor.setNomeAutor(txtNome.getText());
+        autor.setPaisOrigem(txtPaisOrigem.getText());
         autor.setEspecialidade(txtEspecialidade.getText());
 
         return autor;
+    }
+
+    public void setTelaAutor(Autor autor){
+
+        txtPesqNome.setText("");
+        txtID.setText(Integer.toString(autor.getIdAutor()));
+        txtNome.setText(autor.getNomeoAutor());
+        txtEspecialidade.setText(autor.getEspecialidade());
+        txtPaisOrigem.setText(autor.getPaisOrigem());
+    }
+
+    public void restartCrud(){
+
+        txtPesqNome.setText("");
+        txtID.setText("0");
+        txtNome.setText("");
+        txtEspecialidade.setText("");
+        txtPaisOrigem.setText("");
+
+    }
+
+    public String pesqAutor(){
+        return txtPesqNome.getText();
     }
 }

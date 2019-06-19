@@ -1,103 +1,123 @@
 package model.dao;
 
+import auxiliares.AuxiliaresData;
 import connection.ConnectionFactory;
 import model.bean.Autor;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.*;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.*;
 
 public class AutorDao {
 
-    private Connection con = null;
-    Autor autor = new Autor();
+    public Autor createAutorBD(Autor autor) {
 
-    public AutorDao(){
-        con = ConnectionFactory.getConnection();
-    }
-
-    //ir� inserir um novo campo no banco de dados
-    public boolean salvarAutorBD(Autor autor){
-
-        String sql = "INSERT INTO autor () VALUES ()";
-
+        Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
+        String query = null;
 
-        try{
-            stmt = con.prepareStatement(sql);
+        try {
 
-//            stmt.setString(1, autor.());
-//            stmt.setString(2, autor.());
-//            stmt.setString(3, autor.());
+            if (autor.getIdAutor() > 0) {
+                query = "UPDATE autores set nome=?, pais_origem=?, especialidade=? WHERE id=?";
+                stmt = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+                stmt.setInt(4, autor.getIdAutor());
+
+            } else {
+                query = "INSERT INTO autores (pais_origem, nome, especialidade, data_criacao, status) VALUES (?,?,?,?,?)";
+                stmt = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+                autor.setDataCriacao(Date.valueOf(LocalDate.now()));
+                autor.setStatus(true);
+                stmt.setDate(4, (Date) autor.getDataCriacao());
+                stmt.setBoolean(5, autor.getStatus());
+            }
+
+            stmt.setString(1, autor.getPaisOrigem());
+            stmt.setString(2, autor.getNomeoAutor());
+            stmt.setString(3, autor.getEspecialidade());
 
             stmt.executeUpdate();
 
-            return true;
+            ResultSet rs = stmt.getGeneratedKeys();
 
-        }catch (SQLException ex){
+            if (rs.next()) {
+                autor.setIdAutor(rs.getInt(1));
+            }
 
-            System.err.println("Erro: " + ex);
-
-            return false;
-        }finally{
-
-            ConnectionFactory.closeConnection(con, stmt);
-
-        }
-    }
-
-    //Ir� atualizar o registro do autor
-    public boolean alterarAutorBD(Autor autor){
-
-        String sql = "UPDATE autor SET nome = ?, endereco = ?, telefone = ? WHERE cliente_ID = ?";
-
-        PreparedStatement stmt = null;
-
-        try{
-            stmt = con.prepareStatement(sql);
-
-//            stmt.setString(1, autor.());
-//            stmt.setString(2, autor.());
-//            stmt.setString(3, autor.e());
-//            stmt.setInt(4, autor.());
-
-            return true;
-
-        }catch(SQLException ex){
-
-            System.err.println("Error: "+ex);
-            return false;
-
-        }finally{
-
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return autor;
+        } finally {
             ConnectionFactory.closeConnection(con, stmt);
         }
-    }
-
-    //Buscar todos os registros de autor da tabela
-    public List<Autor> encontrarAutorBDTodos(){
-
-        String sql = "SELECT * FROM autor";
-
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-
-        List<Autor> autor = new ArrayList<>();
 
         return autor;
     }
 
-    public Autor encontrarAutorID(int id) {
-        String sql = "SELECT * FROM cliente ";
+    //irá listar todos os autores na tabela
+    public List<Autor> listarAutoresBD(){
+        Connection con = ConnectionFactory.getConnection();
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
+        List<Autor> listaAutor = new ArrayList<>();
 
+        try {
+            stmt = con.prepareStatement("SELECT * FROM autores");
+            rs = stmt.executeQuery();
+
+            while (rs.next()){
+                Autor autor = new Autor();
+
+                autor.setIdAutor(rs.getInt("id"));
+                autor.setPaisOrigem(rs.getString("pais_origem"));
+                autor.setNomeAutor(rs.getString("nome"));
+                autor.setEspecialidade(rs.getString("especialidade"));
+
+                listaAutor.add(autor);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+
+        return listaAutor;
+    }
+
+    //irá pesquisar um unico autor
+    public Autor pesquisaAutorBD(String nome){
+        Connection con = ConnectionFactory.getConnection();
+
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
         Autor autor = new Autor();
+
+        try {
+            stmt = con.prepareStatement("SELECT * FROM autores WHERE nome = ?");
+
+            stmt.setString(1, nome);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                autor.setIdAutor(rs.getInt("id"));
+                autor.setPaisOrigem(rs.getString("pais_origem"));
+                autor.setNomeAutor(rs.getString("nome"));
+                autor.setEspecialidade(rs.getString("especialidade"));
+                autor.setDataCriacao(rs.getDate("data_criacao"));
+                autor.setStatus(rs.getBoolean("status"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+
         return autor;
     }
+
 }
 

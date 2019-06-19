@@ -1,46 +1,32 @@
 package controller;
 
 import boundery.TelaCadEditora;
-import model.bean.Cliente;
 import model.bean.Editora;
 import model.dao.EditoraDao;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class EditoraCtr {
-    EditoraDao procEditora = new EditoraDao();
-    Editora editora = new Editora();
+    EditoraDao editoraDao = new EditoraDao();
     TelaCadEditora tela = new TelaCadEditora();
 
-    public void salvaEditora(){
-        editora = tela.coletaEditora();
-
-        procEditora.salvarEditoraBD(editora);
-
-    }
-
-    public Editora pesqEditora(int id){
+    public  Editora pesqCtrlEditora(String nome){
         Editora editora = new Editora();
-
-        //Procedure de pesquisa da editora, atraves do id
-
+        tela.setTelaEditora(editoraDao.pesquisaEditoraBD(nome));
         return editora;
     }
 
-    public Editora pesqEditoraNome(String nome) {
-        List<Editora> editoras = new ArrayList();
-        Editora editora = new Editora();
-        editoras = procEditora.encontrarEditoraBDTodos();
-
-        for(Editora busca : editoras) {
-            if(busca.getNome() == nome)
-                editora = busca;
-        }
-        return editora;
+    public void salvaEditora(Editora editora){
+        tela.setTelaEditora(editoraDao.createEditoraBD(editora));
     }
 
-    public void deletaEditora(int id){
+    public void editaEditora(Editora editora){
+        //classe dao para editar
+        tela.setTelaEditora(editora);
+        System.out.println("Alterar Editora ok");
+        System.out.println(editora);
+    }
 
+    public void limpaEditora(){
+        tela.restartCrudEditora();
+        System.out.println("Limpeza de tela OK");
     }
 }

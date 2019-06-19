@@ -6,8 +6,8 @@ public class Livro {
     private int idLivro;
     private String titulo;
     private String subTitulo;
-    private int autorID;
-    private int editoraID;
+    private String autor;
+    private String editora;
     private String genero;
     private String palavrasChave;
     private String sinopse;
@@ -21,8 +21,8 @@ public class Livro {
         this.ISBN = ISBN;
     }
 
-    private int ano;
-    private int edicao;
+    private String ano;
+    private String edicao;
 
     public int getIdLivro() {
         return idLivro;
@@ -48,20 +48,20 @@ public class Livro {
         this.subTitulo = subTitulo;
     }
 
-    public int getAutorID() {
-        return autorID;
+    public String getAutor() {
+        return autor;
     }
 
-    public void setAutorID(int autorID) {
-        this.autorID = autorID;
+    public void setAutor(String autor) {
+        this.autor = autor;
     }
 
-    public int getEditoraID() {
-        return editoraID;
+    public String getEditora() {
+        return editora;
     }
 
-    public void setEditoraID(int editoraID) {
-        this.editoraID = editoraID;
+    public void setEditora(String editora) {
+        this.editora = editora;
     }
 
     public String getGenero() {
@@ -88,19 +88,19 @@ public class Livro {
         this.sinopse = sinopse;
     }
 
-    public int getAno() {
+    public String getAno() {
         return ano;
     }
 
-    public void setAno(int ano) {
+    public void setAno(String ano) {
         this.ano = ano;
     }
 
-    public int getEdicao() {
+    public String getEdicao() {
         return edicao;
     }
 
-    public void setEdicao(int edicao) {
+    public void setEdicao(String edicao) {
         this.edicao = edicao;
     }
 
