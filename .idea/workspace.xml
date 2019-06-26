@@ -3,12 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="bbf9f488-f350-4642-ad6d-4863a58a021e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/GerBiblioteca.iml" beforeDir="false" afterPath="$PROJECT_DIR$/GerBiblioteca.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GerBiblioteca/boundery/BotoesLaterais.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GerBiblioteca/boundery/BotoesLaterais.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GerBiblioteca/boundery/TelaInicio.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GerBiblioteca/boundery/TelaInicio.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GerBiblioteca/model/dao/EmprestimoDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GerBiblioteca/model/dao/EmprestimoDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/boundery/BotoesLaterais.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/boundery/BotoesLaterais.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/boundery/TelaInicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/boundery/TelaInicio.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/model/bean/Emprestimo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/bean/Emprestimo.java" afterDir="false" />
+>>>>>>> 5a307a1219521e64958f6dc2589974a2d7ed56c4
       <change beforePath="$PROJECT_DIR$/src/model/dao/EmprestimoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/dao/EmprestimoDao.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -29,7 +33,12 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand />
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="surecorp04@mysql.surecorp.com.br" type="feb32156:DbDataSourceImpl" />
+      </path>
+    </expand>
     <select />
   </component>
   <component name="DefaultGradleProjectSettings">
@@ -38,6 +47,7 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/src/boundery/TelaInicio.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
@@ -48,6 +58,9 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/principal/MainBiblioteca.java">
+=======
+        <entry file="file://$PROJECT_DIR$/src/boundery/TelaCadAutores.java">
+>>>>>>> 5a307a1219521e64958f6dc2589974a2d7ed56c4
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="204">
               <caret line="17" column="60" selection-start-line="1" selection-end-line="29" />
@@ -104,11 +117,19 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/boundery/BotoesInferiores.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="216">
               <caret line="65" column="57" lean-forward="true" selection-start-line="65" selection-start-column="57" selection-end-line="65" selection-end-column="57" />
+=======
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/model/dao/EmprestimoDao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="96">
+              <caret line="132" column="41" lean-forward="true" selection-start-line="132" selection-start-column="41" selection-end-line="132" selection-end-column="41" />
+>>>>>>> 5a307a1219521e64958f6dc2589974a2d7ed56c4
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -116,6 +137,66 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+=======
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/bean/Emprestimo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="25" column="36" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
+              <folding>
+                <element signature="e#318#319#0" expanded="true" />
+                <element signature="e#349#350#0" expanded="true" />
+                <element signature="e#399#400#0" expanded="true" />
+                <element signature="e#439#440#0" expanded="true" />
+                <element signature="e#609#610#0" expanded="true" />
+                <element signature="e#663#664#0" expanded="true" />
+                <element signature="e#709#710#0" expanded="true" />
+                <element signature="e#747#748#0" expanded="true" />
+                <element signature="e#781#782#0" expanded="true" />
+                <element signature="e#835#836#0" expanded="true" />
+                <element signature="e#881#882#0" expanded="true" />
+                <element signature="e#921#922#0" expanded="true" />
+                <element signature="e#957#958#0" expanded="true" />
+                <element signature="e#1015#1016#0" expanded="true" />
+                <element signature="e#1065#1066#0" expanded="true" />
+                <element signature="e#1936#1937#0" expanded="true" />
+                <element signature="e#1968#1969#0" expanded="true" />
+                <element signature="e#2015#2016#0" expanded="true" />
+                <element signature="e#2057#2058#0" expanded="true" />
+                <element signature="e#2091#2092#0" expanded="true" />
+                <element signature="e#2124#2125#0" expanded="true" />
+                <element signature="e#2173#2174#0" expanded="true" />
+                <element signature="e#2217#2218#0" expanded="true" />
+                <element signature="e#3009#3010#0" expanded="true" />
+                <element signature="e#3061#3062#0" expanded="true" />
+                <element signature="e#3100#3101#0" expanded="true" />
+                <element signature="e#3137#3138#0" expanded="true" />
+                <element signature="e#3195#3196#0" expanded="true" />
+                <element signature="e#3247#3248#0" expanded="true" />
+                <element signature="e#3284#3285#0" expanded="true" />
+                <element signature="e#3320#3321#0" expanded="true" />
+                <element signature="e#3375#3376#0" expanded="true" />
+                <element signature="e#3425#3426#0" expanded="true" />
+                <element signature="e#3468#3469#0" expanded="true" />
+                <element signature="e#3507#3508#0" expanded="true" />
+                <element signature="e#3572#3573#0" expanded="true" />
+                <element signature="e#3628#3629#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/be7cdc77-188d-4cc3-a1b8-58e4b61acb4a/console_5.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="6" lean-forward="true" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+>>>>>>> 5a307a1219521e64958f6dc2589974a2d7ed56c4
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/dao/EditoraDao.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -165,7 +246,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/model/bean/Funcionario.java" />
         <option value="$PROJECT_DIR$/src/model/dao/UsuarioDao.java" />
         <option value="$PROJECT_DIR$/src/model/bean/Cliente.java" />
         <option value="$PROJECT_DIR$/src/boundery/TelaLogin.java" />
@@ -199,7 +279,6 @@
         <option value="$PROJECT_DIR$/src/boundery/TelaCadExemplar.java" />
         <option value="$PROJECT_DIR$/src/controller/ExemplaresCtr.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/be7cdc77-188d-4cc3-a1b8-58e4b61acb4a/console_3.sql" />
-        <option value="$PROJECT_DIR$/src/model/bean/Emprestimo.java" />
         <option value="$PROJECT_DIR$/src/boundery/TelaCadEmprestimo.java" />
         <option value="$PROJECT_DIR$/src/controller/EmprestimoCtr.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
@@ -211,10 +290,17 @@
         <option value="$PROJECT_DIR$/src/model/dao/LivroDao.java" />
         <option value="$PROJECT_DIR$/src/controller/BtnLateralControler.java" />
         <option value="$PROJECT_DIR$/src/model/dao/ExemplarDao.java" />
+<<<<<<< HEAD
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/be7cdc77-188d-4cc3-a1b8-58e4b61acb4a/console_5.sql" />
         <option value="$PROJECT_DIR$/src/model/dao/AutorDao.java" />
         <option value="$PROJECT_DIR$/src/boundery/BotoesLaterais.java" />
         <option value="$PROJECT_DIR$/src/boundery/TelaInicio.java" />
+=======
+        <option value="$PROJECT_DIR$/src/model/dao/AutorDao.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/be7cdc77-188d-4cc3-a1b8-58e4b61acb4a/console_6.sql" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/be7cdc77-188d-4cc3-a1b8-58e4b61acb4a/console_5.sql" />
+        <option value="$PROJECT_DIR$/src/model/bean/Emprestimo.java" />
+>>>>>>> 5a307a1219521e64958f6dc2589974a2d7ed56c4
         <option value="$PROJECT_DIR$/src/model/dao/EmprestimoDao.java" />
       </list>
     </option>
@@ -237,8 +323,11 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
       <pane id="PackagesPane" />
       <pane id="Scope" />
+=======
+>>>>>>> 5a307a1219521e64958f6dc2589974a2d7ed56c4
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -255,6 +344,7 @@
               <item name="ultimaversao" type="b2602c69:ProjectViewProjectNode" />
               <item name="ultimaversao" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
               <item name="boundery" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -262,6 +352,9 @@
               <item name="ultimaversao" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="documentation" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+>>>>>>> 5a307a1219521e64958f6dc2589974a2d7ed56c4
             </path>
             <path>
               <item name="ultimaversao" type="b2602c69:ProjectViewProjectNode" />
@@ -273,6 +366,11 @@
           <select />
         </subPane>
       </pane>
+<<<<<<< HEAD
+=======
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+>>>>>>> 5a307a1219521e64958f6dc2589974a2d7ed56c4
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -284,7 +382,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1560995694695" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561526390416" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="MySQL" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/mysql-connector-java-5.1.46-bin.jar!/" />
@@ -442,15 +540,26 @@
       <workItem from="1560913363816" duration="13969000" />
       <workItem from="1560961989118" duration="15950000" />
       <workItem from="1561482526111" duration="1238000" />
+<<<<<<< HEAD
       <workItem from="1561521834253" duration="4040000" />
+=======
+      <workItem from="1561520389091" duration="4509000" />
+>>>>>>> 5a307a1219521e64958f6dc2589974a2d7ed56c4
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="244981000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+=======
+    <option name="totallyTimeSpent" value="245450000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="25" width="1366" height="743" extended-state="6" />
+>>>>>>> 5a307a1219521e64958f6dc2589974a2d7ed56c4
     <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
@@ -460,12 +569,21 @@
       <window_info id="UI Designer" order="4" />
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info id="Learn" order="6" weight="0.32980332" />
+<<<<<<< HEAD
       <window_info active="true" content_ui="combo" id="Project" order="7" visible="true" weight="0.16490166" />
       <window_info active="true" anchor="bottom" id="Database Console" order="0" sideWeight="0.49926794" visible="true" weight="0.32182103" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" />
       <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.17348608" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.23240589" />
+=======
+      <window_info content_ui="combo" id="Project" order="7" visible="true" weight="0.30966324" />
+      <window_info anchor="bottom" id="Database Console" order="0" sideWeight="0.49926794" weight="0.32182103" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.31083202" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.42508143" />
+>>>>>>> 5a307a1219521e64958f6dc2589974a2d7ed56c4
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" />
@@ -481,7 +599,11 @@
       <window_info anchor="right" id="Maven" order="3" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
+<<<<<<< HEAD
       <window_info anchor="right" id="Database" order="6" visible="true" weight="0.16187595" />
+=======
+      <window_info anchor="right" id="Database" order="6" visible="true" weight="0.16178624" />
+>>>>>>> 5a307a1219521e64958f6dc2589974a2d7ed56c4
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
     </layout>
@@ -562,6 +684,31 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
+=======
+    <entry file="jar:///usr/lib/jvm/jdk1.8.0_211/src.zip!/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="590">
+          <caret line="108" column="3" lean-forward="true" selection-start-line="108" selection-start-column="3" selection-end-line="108" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/3ae35f97-1d92-4063-90ea-9cc71373d81b/console_4.sql" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/3ae35f97-1d92-4063-90ea-9cc71373d81b/console_5.sql" />
+    <entry file="file://$PROJECT_DIR$/src/model/bean/Funcionario.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="33" column="16" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
+          <folding>
+            <element signature="e#727#728#0" expanded="true" />
+            <element signature="e#768#769#0" expanded="true" />
+            <element signature="e#834#835#0" expanded="true" />
+            <element signature="e#894#895#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+>>>>>>> 5a307a1219521e64958f6dc2589974a2d7ed56c4
     <entry file="file://$PROJECT_DIR$/src/model/dao/FuncionarioDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
@@ -756,7 +903,17 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="jar:///usr/lib/jvm/jdk1.8.0_211/src.zip!/java/lang/NumberFormatException.java" />
+=======
+    <entry file="jar:///usr/lib/jvm/jdk1.8.0_211/src.zip!/java/lang/NumberFormatException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="64" selection-start-line="64" selection-end-line="64" />
+        </state>
+      </provider>
+    </entry>
+>>>>>>> 5a307a1219521e64958f6dc2589974a2d7ed56c4
     <entry file="file://$PROJECT_DIR$/src/boundery/TelaCadEmprestimo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="43">
@@ -960,16 +1117,24 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/model/dao/EditoraDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="108" selection-start-line="108" selection-end-line="108" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/model/dao/LivroDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2400">
+          <caret line="168" column="18" selection-start-line="168" selection-start-column="18" selection-end-line="168" selection-end-column="18" />
+>>>>>>> 5a307a1219521e64958f6dc2589974a2d7ed56c4
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/boundery/TelaInicio.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -981,16 +1146,84 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="65" column="57" lean-forward="true" selection-start-line="65" selection-start-column="57" selection-end-line="65" selection-end-column="57" />
+=======
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/be7cdc77-188d-4cc3-a1b8-58e4b61acb4a/console_6.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="26" lean-forward="true" selection-start-column="26" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/dao/AutorDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="22" column="44" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/be7cdc77-188d-4cc3-a1b8-58e4b61acb4a/console_5.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="6" lean-forward="true" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/bean/Emprestimo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="25" column="36" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
+>>>>>>> 5a307a1219521e64958f6dc2589974a2d7ed56c4
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#318#319#0" expanded="true" />
+            <element signature="e#349#350#0" expanded="true" />
+            <element signature="e#399#400#0" expanded="true" />
+            <element signature="e#439#440#0" expanded="true" />
+            <element signature="e#609#610#0" expanded="true" />
+            <element signature="e#663#664#0" expanded="true" />
+            <element signature="e#709#710#0" expanded="true" />
+            <element signature="e#747#748#0" expanded="true" />
+            <element signature="e#781#782#0" expanded="true" />
+            <element signature="e#835#836#0" expanded="true" />
+            <element signature="e#881#882#0" expanded="true" />
+            <element signature="e#921#922#0" expanded="true" />
+            <element signature="e#957#958#0" expanded="true" />
+            <element signature="e#1015#1016#0" expanded="true" />
+            <element signature="e#1065#1066#0" expanded="true" />
+            <element signature="e#1936#1937#0" expanded="true" />
+            <element signature="e#1968#1969#0" expanded="true" />
+            <element signature="e#2015#2016#0" expanded="true" />
+            <element signature="e#2057#2058#0" expanded="true" />
+            <element signature="e#2091#2092#0" expanded="true" />
+            <element signature="e#2124#2125#0" expanded="true" />
+            <element signature="e#2173#2174#0" expanded="true" />
+            <element signature="e#2217#2218#0" expanded="true" />
+            <element signature="e#3009#3010#0" expanded="true" />
+            <element signature="e#3061#3062#0" expanded="true" />
+            <element signature="e#3100#3101#0" expanded="true" />
+            <element signature="e#3137#3138#0" expanded="true" />
+            <element signature="e#3195#3196#0" expanded="true" />
+            <element signature="e#3247#3248#0" expanded="true" />
+            <element signature="e#3284#3285#0" expanded="true" />
+            <element signature="e#3320#3321#0" expanded="true" />
+            <element signature="e#3375#3376#0" expanded="true" />
+            <element signature="e#3425#3426#0" expanded="true" />
+            <element signature="e#3468#3469#0" expanded="true" />
+            <element signature="e#3507#3508#0" expanded="true" />
+            <element signature="e#3572#3573#0" expanded="true" />
+            <element signature="e#3628#3629#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/dao/EmprestimoDao.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="250">
           <caret line="170" column="33" lean-forward="true" selection-start-line="170" selection-start-column="33" selection-end-line="170" selection-end-column="33" />
+=======
+        <state relative-caret-position="96">
+          <caret line="132" column="41" lean-forward="true" selection-start-line="132" selection-start-column="41" selection-end-line="132" selection-end-column="41" />
+>>>>>>> 5a307a1219521e64958f6dc2589974a2d7ed56c4
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

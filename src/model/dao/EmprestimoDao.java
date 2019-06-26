@@ -139,6 +139,7 @@ public class EmprestimoDao {
         Emprestimo emprestimo = new Emprestimo();
 
         String query = "SELECT " +
+
                 "em.id, " +
                 "em.data_devolucao_efetiva, " +
                 "em.data_devolucao_prevista, " +
