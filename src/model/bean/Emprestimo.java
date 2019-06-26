@@ -22,9 +22,37 @@ public class Emprestimo {
     private Exemplar exemplar;
     private Date dataEmprestimo;
     private Date dataDevEfetiva;
+
+    public String getTituloLivro() {
+        return tituloLivro;
+    }
+
+    public void setTituloLivro(String tituloLivro) {
+        this.tituloLivro = tituloLivro;
+    }
+
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
+
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
+    }
+
+    public String getSubtituoLivro() {
+        return subtituoLivro;
+    }
+
+    public void setSubtituoLivro(String subtituoLivro) {
+        this.subtituoLivro = subtituoLivro;
+    }
+
     private int funcionarioID;
     private boolean statusEmprestimo;
     private Date dataDevPrevista;
+    private String tituloLivro;
+    private String nomeCliente;
+    private String subtituoLivro;
 
     public Emprestimo(){
         this.idEmprestimo = 0;

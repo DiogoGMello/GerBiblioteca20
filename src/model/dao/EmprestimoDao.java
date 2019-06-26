@@ -118,36 +118,48 @@ public class EmprestimoDao {
         ResultSet rs = null;
 
         Emprestimo emprestimo = new Emprestimo();
-//
-//        ExemplarDao exemplarDao = new ExemplarDao();
-//        Exemplar exemplar = new Exemplar();
-//        ClienteDao clienteDao = new ClienteDao();
-//        Cliente cliente = new Cliente();
-//
-//        try {
-//            stmt = con.prepareStatement("SELECT * FROM emprestimo WHERE id = ?");
-//            stmt.setInt(1, id);
-//            rs = stmt.executeQuery();
-//
-//
-//            emprestimo.setIdEmprestimo(rs.getInt("id"));
-//            emprestimo.setDataEmprestimo(rs.getDate("data_emprestimo"));
-//            emprestimo.setDataDevEfetiva(rs.getDate("data_devolucao_efetiva"));
-//            emprestimo.setDataDevPrevista(rs.getDate("data_devolucao_prevista"));
-//
-//            //coleta o cliente
-//            cliente = clienteDao.pesquisaClienteIdBD(rs.getString("id_cliente"));
-//            emprestimo.setCliente(cliente);
-//
-//            //coleta o livro e inclui no exemplar
-//            exemplar = exemplarDao.pesquisaExemplarIdBD(rs.getInt("id_exemplar"));
-//            emprestimo.setExemplar(exemplar);
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }finally {
-//            ConnectionFactory.closeConnection(con, stmt, rs);
-//        }
+
+        String query = "SELECT " +
+                        "em.id, " +
+                        "em.data_devolucao_efetiva, " +
+                        "em.data_devolucao_prevista, " +
+                        "em.data_emprestimo, " +
+                        "em.status, " +
+                        "ex.id as id_exemplar, " +
+                        "cl.id as id_livro" +
+                        "cl.nome, " +
+                        "cl.cpf, " +
+                        "li.titulo, " +
+                        "li.subtitulo " +
+                        "FROM emprestimos em " +
+                        "INNER JOIN clientes cl on cl.id = em.id_cliente " +
+                        "INNER JOIN exemplares ex on ex.id = em.id_exemplar " +
+                        "INNER JOIN livros li on li.id = ex.id_livro " +
+                        "WHERE em.id=?";
+
+        try {
+            stmt = con.prepareStatement(query);
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+
+            if(rs.next()) {
+                emprestimo.setIdEmprestimo(rs.getInt("id"));
+                emprestimo.setDataEmprestimo(rs.getDate("data_emprestimo"));
+                emprestimo.setDataDevEfetiva(rs.getDate("data_devolucao_efetiva"));
+                emprestimo.setDataDevPrevista(rs.getDate("data_devolucao_prevista"));
+                emprestimo.setIdExemplar(rs.getInt("id_exemplar"));
+                emprestimo.setIdCliente(rs.getInt("id_cliente"));
+                emprestimo.setNomeCliente(rs.getString("nome"));
+                emprestimo.setTituloLivro(rs.getString("titulo"));
+                emprestimo.setSubtituoLivro(rs.getString("subtitulo"));
+                emprestimo.setStatusEmprestimo(rs.getBoolean("status"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
 
         return emprestimo;
     }
