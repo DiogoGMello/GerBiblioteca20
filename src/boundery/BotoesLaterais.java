@@ -77,7 +77,7 @@ public class BotoesLaterais {
                         BorderWidths.DEFAULT)));
         layoutMenuLateral
                 .getChildren()
-                .addAll(menuIdentificacao, btnEmprestimo, btnCliente, btnExemplar,
+                .addAll(menuIdentificacao, btnInicio, btnEmprestimo, btnCliente, btnExemplar,
                         btnLivro, btnFuncionario, btnEditora, btnAutor);
         layoutMenuLateral.setPadding(new Insets(20,10,20,10));
 

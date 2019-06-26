@@ -40,7 +40,7 @@ public class TelaInicio {
         dataDevReal.setCellValueFactory(new PropertyValueFactory<>("dataDevEfetiva"));
 
         table = new TableView<>();
-        table.setItems(getProducts());
+        table.setItems(getEmprestimos());
         table.getColumns().addAll(idColuna, dataEmprestimo, dataDevPrevista, dataDevReal);
 
 
@@ -50,11 +50,13 @@ public class TelaInicio {
         return  layout;
     }
 
-    public ObservableList<Emprestimo> getProducts(){
+    public ObservableList<Emprestimo> getEmprestimos(){
         ObservableList<Emprestimo> emprestimoTela = FXCollections.observableArrayList();
 
         EmprestimoDao emprestimoDao = new EmprestimoDao();
         List<Emprestimo> listaEmprestimo = new ArrayList<>();
+
+        listaEmprestimo = emprestimoDao.encontrarEmprestimoBDTodos();
 
         for (Emprestimo emprestimo : listaEmprestimo) {
             emprestimoTela.add(emprestimo);
