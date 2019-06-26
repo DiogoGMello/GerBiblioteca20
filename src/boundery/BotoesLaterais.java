@@ -23,6 +23,9 @@ public class BotoesLaterais {
 
         btnInicio = new Button("Inicio");
         btnInicio.setMinWidth(125);
+        btnInicio.setOnAction(e->
+                MainBiblioteca.scnPrincipal
+                        .setRoot(btnLateralControler.setTelaInicial()));
 
         btnEmprestimo = new Button("Emprestimos");
         btnEmprestimo.setMinWidth(125);

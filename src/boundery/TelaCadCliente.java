@@ -169,7 +169,7 @@ public class TelaCadCliente{
     public void rstartCliente(){
         txtPesqNome.setText("");
         txtPesqCPF.setText("");
-        txtID.setText("");
+        txtID.setText("0");
         txtCPF.setText("");
         txtNome.setText("");
         txtEndereco.setText("");

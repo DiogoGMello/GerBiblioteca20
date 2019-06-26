@@ -1,60 +1,78 @@
 package boundery;
 
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+import javafx.scene.layout.*;
 import model.bean.Emprestimo;
+import model.dao.EmprestimoDao;
 
-public class TelaInicio{
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+public class TelaInicio {
 
     TableView<Emprestimo> table;
 
-    public Scene geraInicioScene(){
-        Scene scnInicio = new Scene(geraInicioNode(), 750, 600);
-        return scnInicio;
-    }
 
-    public VBox geraInicioNode(){
+    public VBox telaInicio(){
 
         //Set para a coluna Nome
         // Este determina o cabeçalho e o que vai naquela coluna
-        TableColumn<Emprestimo, String> nomeColuna = new TableColumn<>("Nome");
+        TableColumn<Emprestimo, Integer> idColuna = new TableColumn<>("ID");
         //Determina o tamanho minimo da coluna a ser exibido na tabela
-        nomeColuna.setMinWidth(200);
+        idColuna.setMinWidth(15);
         //o string deve ser o mesmo do nome da varial, este determina onde irá buscar a informação
-        nomeColuna.setCellValueFactory(new PropertyValueFactory<>("name"));
+        idColuna.setCellValueFactory(new PropertyValueFactory<>("idEmprestimo"));
 
-        //Set para a coluna de Preços
-        TableColumn<Emprestimo, Double> precoColuna = new TableColumn<>("Preço");
-        precoColuna.setMinWidth(100);
-        precoColuna.setCellValueFactory(new PropertyValueFactory<>("price"));
+        TableColumn<Emprestimo, Date> dataEmprestimo = new TableColumn<>("Data Emprestimo");
+        dataEmprestimo.setMinWidth(200);
+        dataEmprestimo.setCellValueFactory(new PropertyValueFactory<>("dataEmprestimo"));
 
-        //Set para a coluna de quantidade
-        TableColumn<Emprestimo, Integer> quantColuna = new TableColumn<>("Qtde");
-        quantColuna.setMinWidth(200);
-        quantColuna.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        TableColumn<Emprestimo, Date> dataDevPrevista = new TableColumn<>("Devolução Prevista");
+        dataDevPrevista.setMinWidth(200);
+        dataDevPrevista.setCellValueFactory(new PropertyValueFactory<>("dataDevPrevista"));
+
+        TableColumn<Emprestimo, Date> dataDevReal = new TableColumn<>("Devolução Real");
+        dataDevReal.setMinWidth(200);
+        dataDevReal.setCellValueFactory(new PropertyValueFactory<>("dataDevEfetiva"));
 
         table = new TableView<>();
         table.setItems(getProducts());
-        table.getColumns().addAll(nomeColuna, precoColuna, quantColuna);
+        table.getColumns().addAll(idColuna, dataEmprestimo, dataDevPrevista, dataDevReal);
 
 
-        //Layout
         VBox layout = new VBox(20);
         layout.getChildren().addAll(table);
 
-        return layout;
+        return  layout;
     }
 
     public ObservableList<Emprestimo> getProducts(){
-        ObservableList<Emprestimo> emprestimo = FXCollections.observableArrayList();
-        emprestimo.addAll();
-        return emprestimo;
+        ObservableList<Emprestimo> emprestimoTela = FXCollections.observableArrayList();
+
+        EmprestimoDao emprestimoDao = new EmprestimoDao();
+        List<Emprestimo> listaEmprestimo = new ArrayList<>();
+
+        for (Emprestimo emprestimo : listaEmprestimo) {
+            emprestimoTela.add(emprestimo);
+        }
+
+        return emprestimoTela;
     }
+
+    public int itemSelecionadoId(){
+        int id;
+
+        ObservableList<Emprestimo> produtoSelecionado;
+
+        Emprestimo emprestimo = table.getSelectionModel().getSelectedItem();
+
+        id = emprestimo.getIdEmprestimo();
+
+        return id;
+    }
+
 }

@@ -10,7 +10,9 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import model.bean.Exemplar;
 import model.bean.Livro;
+import model.dao.LivroDao;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,8 +22,10 @@ public class TelaCadExemplar{
     Label lblPesquisa, lblPesqTitulo, lblPesqSubtitulo, lblCadastro, lblID, lblTitulo,
             lblSubtitulo, lblNSerie, lblCondicao, lblStatus, lblEmprestimoID, lblDtAquisicao, lblDtRemocao;
 
+    static Label txtDtAquisicao, txtStatus;
+
     static TextField txtPesqTitulo, txtPesqSubtitulo, txtID, txtTitulo, txtSubtitulo, txtNSerie, txtCondicao,
-            txtStatus, txtEmprestimoID, txtDtAquisicao, txtDtRemocao;
+            txtEmprestimoID, txtDtRemocao;
 
     static Livro livro = new Livro();
     static Exemplar exemplar = new Exemplar();
@@ -30,7 +34,7 @@ public class TelaCadExemplar{
 
     public VBox geraCrudExemplar(){
         ExemplaresCtr exemplaresCtr = new ExemplaresCtr();
-        LivrosCtr livrosCtr = new LivrosCtr();
+        LivroDao livroDao = new LivroDao();
 
         GridPane layoutCentral = new GridPane();
         layoutCentral.setPadding(new Insets(10));
@@ -54,14 +58,14 @@ public class TelaCadExemplar{
         txtPesqTitulo = new TextField();
         lblPesqSubtitulo = new Label("Subtitulo");
         txtPesqSubtitulo = new TextField();
-        btnPesquisar = new Button("Search Exemplar");
+        btnPesquisar = new Button("Pesquisa exemplar");
         btnPesquisar.setOnAction(e->{
-            exemplar = exemplaresCtr.pesqCtrlExemplar(pesqLivro());
-            setTelaExemplar(exemplar);
+            setTelaExemplar(exemplaresCtr.pesqCtrlExemplar(pesqLivro()));
         });
-        btnPesqLivro = new Button("Pesq Teit/Sub Livro");
+        btnPesqLivro = new Button("Pesquisa livro");
         btnPesqLivro.setOnAction(e-> {
-            livro = livrosCtr.pesqCtrlLivro(pesqLivro());
+            livro = pesqLivro();
+            livro = livroDao.pesquisaLivroBD(livro.getTitulo(), livro.getSubTitulo());
             setItensLivro(livro);
         });
 
@@ -98,7 +102,7 @@ public class TelaCadExemplar{
 
         lblStatus = new Label("Status");
         layoutCentral.setConstraints(lblStatus, 0, 5);
-        txtStatus = new TextField();
+        txtStatus = new Label();
         layoutCentral.setConstraints(txtStatus, 1,5);
         lblEmprestimoID = new Label("Empretimo ID");
         layoutCentral.setConstraints(lblEmprestimoID, 2, 5);
@@ -107,7 +111,7 @@ public class TelaCadExemplar{
 
         lblDtAquisicao = new Label("Aquisição");
         layoutCentral.setConstraints(lblDtAquisicao, 0, 6);
-        txtDtAquisicao = new TextField();
+        txtDtAquisicao = new Label();
         layoutCentral.setConstraints(txtDtAquisicao, 1,6);
         lblDtRemocao = new Label("Remoção");
         layoutCentral.setConstraints(lblDtRemocao, 2, 6);
@@ -135,7 +139,7 @@ public class TelaCadExemplar{
         LivrosCtr livrosCtr = new LivrosCtr();
 
         exemplar.setLivro(livro);
-        exemplar.setNumSerie(Integer.parseInt(txtNSerie.getText()));
+        exemplar.setNumSerie(txtNSerie.getText());
         exemplar.setConservacao(txtCondicao.getText());
         exemplar.setStatusExemplar(Boolean.parseBoolean(txtStatus.getText()));
         //Tratar data aquisição e remoção
@@ -170,14 +174,19 @@ public class TelaCadExemplar{
         txtID.setText(Integer.toString(exemplar.getIdExemplar()));
         txtTitulo.setText(exemplar.getLivro().getTitulo());
         txtSubtitulo.setText(exemplar.getLivro().getSubTitulo());
-        txtNSerie.setText(Integer.toString(exemplar.getNumSerie()));
+        txtNSerie.setText(exemplar.getNumSerie());
         txtCondicao.setText(exemplar.getConservacao());
         txtStatus.setText("");
         txtEmprestimoID.setText("");
 
-        Date dataFormat = exemplar.getDataEntrada();
-        String dataString = dataFormat.toString();
-        txtDtAquisicao.setText(dataString);
+
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            txtDtAquisicao.setText(dateFormat.format(exemplar.getDataEntrada()));
+            txtStatus.setText(exemplar.getStatus() ? "Ativo" : "Inativo");
+        } catch (Exception e) {
+
+        }
 
         txtDtRemocao.setText("");
     }

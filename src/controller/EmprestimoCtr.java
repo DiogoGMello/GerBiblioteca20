@@ -20,12 +20,9 @@ public class EmprestimoCtr {
 
     public void salvaEmprestimo(Emprestimo emprestimo){
         TelaCadEmprestimo tela = new TelaCadEmprestimo();
-        //Classe dao de salvar emprestimo
-        //a classe DAO deve retornar o objeto emprestimo com o ID incluso
-        //emprestimo = emprestimoDao.salvarNovoEmprestimo(emprestimo);
-        tela.setTelaEmprestimo(emprestimo);
-        System.out.println("Funcionou Controle emprestimo Salvar");
-        System.out.println(emprestimo);
+        EmprestimoDao emprestimoDao = new EmprestimoDao();
+        emprestimo = emprestimoDao.createOrUpdateEmprestimoBD(emprestimo);
+       // tela.setTelaEmprestimo(emprestimo);
     }
 
     public void editaEmprestimo(Emprestimo emprestimo){

@@ -167,7 +167,7 @@ public class TelaCadLivro{
     public void restartCrudLivro(){
         txtPesqTitulo.setText("");
         txtPesqSubtitulo.setText("");
-        txtID.setText("");
+        txtID.setText("0");
         txtGenero.setText("");
         txtTitulo.setText("");
         txtSubtitulo.setText("");

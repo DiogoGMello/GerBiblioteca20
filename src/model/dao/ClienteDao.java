@@ -200,5 +200,37 @@ public class ClienteDao {
         return cliente;
     }
 
+    public Cliente pesquisaClienteIdBD(int id){
+        Connection con = ConnectionFactory.getConnection();
+
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Cliente cliente = new Cliente();
+
+        try {
+            stmt = con.prepareStatement("SELECT * FROM clientes  WHERE id = ?");
+
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+
+            cliente.setCpf(rs.getString("cpf"));
+            cliente.setNome(rs.getString("nome"));
+            cliente.setEndereco(rs.getString("endereco"));
+            cliente.setNumeroEndereco(rs.getString("numero"));
+            cliente.setBairro(rs.getString("bairro"));
+            cliente.setCep(rs.getString("cep"));
+            cliente.setCidade(rs.getString("cidade"));
+            cliente.setEstado(rs.getString("estado"));
+            cliente.setIdCliente(rs.getInt("id"));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+
+        return cliente;
+    }
+
 }
 

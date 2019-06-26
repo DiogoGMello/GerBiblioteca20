@@ -4,11 +4,31 @@ import java.util.Date;
 
 public class Exemplar {
     private int idExemplar;
-    private int NumSerie;
+    private String NumSerie;
     private Date dataEntrada;
     private String conservacao;
     private boolean statusExemplar;
+    private Date dataRemocao;
     private Livro livro;
+    private boolean status;
+
+    public Exemplar() {
+        this.idExemplar = 0;
+        this.NumSerie = "";
+        this.dataEntrada = null;
+        this.conservacao = "";
+        this.dataRemocao = null;
+        this.statusExemplar = false;
+        this.livro = new Livro();
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
 
     public Livro getLivro() {
         return livro;
@@ -18,7 +38,14 @@ public class Exemplar {
         this.livro = livro;
     }
 
-    public Exemplar(){
+    public Date getDataRemocao()
+    {
+        return this.dataRemocao;
+    }
+
+    public void setDataRemocao(Date dataRemocao)
+    {
+        this.dataRemocao = dataRemocao;
     }
 
     public int getIdExemplar() {
@@ -29,12 +56,12 @@ public class Exemplar {
         this.idExemplar = idExemplar;
     }
 
-    public int getNumSerie() {
+    public String getNumSerie() {
         return NumSerie;
     }
 
-    public void setNumSerie(int numSerie) {
-        NumSerie = numSerie;
+    public void setNumSerie(String numSerie) {
+        this.NumSerie = numSerie;
     }
 
     public Date getDataEntrada() {

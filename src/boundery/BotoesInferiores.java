@@ -1,9 +1,12 @@
 package boundery;
 
 import controller.BtnInferioresCtr;
+import controller.BtnLateralControler;
 import javafx.geometry.NodeOrientation;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
+import model.bean.Emprestimo;
+import model.dao.EmprestimoDao;
 
 import java.text.ParseException;
 
@@ -50,9 +53,20 @@ public class BotoesInferiores {
     public HBox botaoInicial(){
 
         HBox layoutBotoes = new HBox();
+        BtnLateralControler btnLateralControler = new BtnLateralControler();
+        EmprestimoDao emprestimoDao = new EmprestimoDao();
+        TelaInicio telaInicio = new TelaInicio();
+        TelaCadEmprestimo telaCadEmprestimo = new TelaCadEmprestimo();
 
-        btnLimpar = new Button("Verificar Selecionado");
-        btnLimpar.setMinWidth(100);
+        btnVerificar = new Button("Verificar Selecionado");
+        btnVerificar.setMinWidth(100);
+        btnVerificar.setOnAction(e->{
+            btnLateralControler.crudEmprestimo();
+            Emprestimo emprestimo =
+                    emprestimoDao.pesquisaEmprestimoIdBD(
+                            telaInicio.itemSelecionadoId());
+            telaCadEmprestimo.setTelaEmprestimo(emprestimo);
+        });
 
         layoutBotoes.getChildren().addAll(btnVerificar);
         layoutBotoes.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);

@@ -12,34 +12,20 @@ import java.util.List;
 
 public class ExemplaresCtr {
 
-    //LivroDao livroDao = new LivroDao();
+    LivroDao livroDao = new LivroDao();
+    ExemplarDao exemplarDao = new ExemplarDao();
     TelaCadExemplar telaCadExemplar = new TelaCadExemplar();
 
-    public Exemplar pesqCtrlExemplar(Livro livro){
+    public Exemplar pesqCtrlExemplar(Livro livro) {
         Exemplar exemplar = new Exemplar();
-
-        if(livro.getTitulo() != null || livro.getTitulo() != ""){
-            //Classe dao para buscar por titulo
-            //exemplar = exemplarDao.pesqPorTitulo(livro.getTitulo());
-            System.out.println("Busca por titulo " + livro.getTitulo());
-            telaCadExemplar.setTelaExemplar(exemplar);
-            return exemplar;
-        }else {
-            //Classe dao para buscar por subtitulo
-            //exemplar = exemplarDao.pesqPorSubTitulo(livro.getSubTitulo());
-            System.out.println("Busca por Subtitulo " + livro.getSubTitulo());
-            telaCadExemplar.setTelaExemplar(exemplar);
-            return exemplar;
-        }
+        exemplar = exemplarDao.pesquisaExemplarBD(livro);
+        telaCadExemplar.setTelaExemplar(exemplar);
+        return  exemplar;
     }
 
     public void salvaExemplar(Exemplar exemplar){
-        //Classe dao de salvar exemplar
-        //a classe DAO deve retornar o objeto exemplar com o ID incluso
-        //exemplar = exemplarDao.salvarNovoExemplar(exemplar);
+        exemplarDao.insertOrupdateExemplarBD(exemplar);
         telaCadExemplar.setTelaExemplar(exemplar);
-        System.out.println("Funcionou Controle exemplar Salvar");
-        System.out.println(exemplar);
     }
 
     public void editaExemplar(Exemplar exemplar){

@@ -1,6 +1,7 @@
 package model.dao;
 
 import connection.ConnectionFactory;
+import model.bean.Autor;
 import model.bean.Editora;
 import model.bean.Livro;
 
@@ -141,6 +142,49 @@ public class LivroDao {
         }finally {
             ConnectionFactory.closeConnection(con, stmt, rs);
         }
+        return livro;
+    }
+
+
+    public Livro pesquisaLivroIdBD(int id){
+        Connection con = ConnectionFactory.getConnection();
+
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Autor autor = new Autor();
+        Livro livro = new Livro();
+        Editora editora = new Editora();
+        AutorDao autorDao = new AutorDao();
+        EditoraDao editoraDao = new EditoraDao();
+
+        try {
+            stmt = con.prepareStatement("SELECT * FROM livros  WHERE id = ?");
+
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+
+            livro.setTitulo(rs.getString("titulo"));
+            livro.setSubTitulo(rs.getString("subtitulo"));
+            livro.setSinopse(rs.getString("sinopse"));
+            livro.setGenero(rs.getString("genero"));
+            livro.setISBN(rs.getString("isbn"));
+            livro.setAno(rs.getString("ano"));
+            livro.setIdLivro(rs.getInt("id"));
+
+            //Precisa verificar como faz que eu não sei incluir autor
+            //autorDao.pesquisaAutorIdBD(rs.getString("autor"));
+            livro.setAutor(rs.getString("autor"));
+
+            //O mesmo para a editora
+            //editora = editoraDao.pesquisaEditoraIdBD(rs.getInt("editora"));
+            livro.setEditora(rs.getString("editora"));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+
         return livro;
     }
 

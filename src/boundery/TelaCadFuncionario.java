@@ -149,9 +149,15 @@ public class TelaCadFuncionario{
         txtCEP.setText(funcionario.getCep());
         txtCidade.setText(funcionario.getCidade());
         txtEstado.setText(funcionario.getEstado());
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        txtDtCadastro.setText(dateFormat.format(funcionario.getDataInicioContrato()));
-        txtStatus.setText(funcionario.getStatus() == true ? "Ativo" : "Inativo");
+
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            txtDtCadastro.setText(dateFormat.format(funcionario.getDataInicioContrato()));
+            txtStatus.setText(funcionario.getStatus() ? "Ativo" : "Inativo");
+        } catch (Exception e) {
+
+        }
+
 
     }
 

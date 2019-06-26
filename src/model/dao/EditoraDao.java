@@ -159,5 +159,35 @@ public class EditoraDao {
 
         return editora;
     }
+
+    public Editora pesquisaEditoraIdBD(int id){
+        Connection con = ConnectionFactory.getConnection();
+
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Editora editora = new Editora();
+
+        try {
+            stmt = con.prepareStatement("SELECT * FROM editora  WHERE id = ?");
+
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+
+            editora.setNome(rs.getString("nome"));
+            editora.setRevendedor(rs.getString("revendedor"));
+            editora.setContatoRevendedor(rs.getString("contato_revendedor"));
+            editora.setEmail(rs.getString("email_editora"));
+            editora.setEmailRevendedor(rs.getString("email_revendedor"));
+            editora.setContato(rs.getString("contato"));
+            editora.setIdEditora(rs.getInt("id"));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+
+        return editora;
+    }
 }
 

@@ -13,6 +13,7 @@ import model.bean.Cliente;
 import model.bean.Emprestimo;
 import model.bean.Exemplar;
 import model.bean.Livro;
+import model.dao.ExemplarDao;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,17 +23,19 @@ public class TelaCadEmprestimo {
 
     Label lblPesquisa, lblPesqID, lblPesqCliente, lblCadastro, lblID, lblDtEmprestimo, lblStatus, lblCliente,
             lblClienteID, lblClienteCPF, lblDevPrevista, lblDevEfetiva, lblExemplarTitulo, lblExemplarSubTitulo,
-            lblExemplarID, lblNumClienteID, lblNumExemplarID, lblGuia;
+            lblGuia, lblExemplarID;
 
-    static TextField txtPesqID, txtPesqCliente, txtID, txtDtEmprestimo, txtStatus, txtCliente, txtClienteID,
+    static Label txtID, lblNumClienteID, lblNumExemplarID;
+
+    static TextField txtPesqID, txtPesqCliente, txtDtEmprestimo, txtStatus, txtCliente, txtClienteID,
             txtClienteCPF, txtDevPrevista, txtDevEfetiva, txtExemplarTitulo, txtExemplarSubTitulo, txtExemplarID;
 
     Button btnPesquiar, btnPesqCliente, btnPesqExemplar;
 
-    Exemplar exemplarTela = new Exemplar();
-    ExemplaresCtr exemplaresCtr = new ExemplaresCtr();
+    static Exemplar exemplarTela = new Exemplar();
+    ExemplarDao exemplaresCtr = new ExemplarDao();
 
-    Cliente clienteTela = new Cliente();
+    static Cliente clienteTela = new Cliente();
     ClienteCtr clienteCtr = new ClienteCtr();
 
     Emprestimo emprestimo = new Emprestimo();
@@ -64,7 +67,7 @@ public class TelaCadEmprestimo {
         btnPesquiar = new Button("Search");
         btnPesquiar.setOnAction(e->{
                 emprestimo = emprestimoCtr.pesqCtrlEmprestimo(pesqEmprestimo());
-                setTelaEmprestimo(emprestimo);
+               // setTelaEmprestimo(emprestimo);
         });
 
         layoutPesquisa.getChildren().addAll(lblPesqCliente, txtPesqCliente, btnPesquiar);
@@ -76,7 +79,7 @@ public class TelaCadEmprestimo {
 
         lblID = new Label("ID");
         layoutCentral.setConstraints(lblID, 0, 1);
-        txtID = new TextField();
+        txtID = new Label("0");
         layoutCentral.setConstraints(txtID, 1,1);
         lblDtEmprestimo = new Label("Data Emprestimo");
         layoutCentral.setConstraints(lblDtEmprestimo, 2, 1);
@@ -134,7 +137,7 @@ public class TelaCadEmprestimo {
         layoutCentral.setConstraints(txtExemplarSubTitulo, 3,5);
         lblExemplarID = new Label("Exemplar ID");
         layoutCentral.setConstraints(lblExemplarID, 4, 5);
-        lblNumExemplarID = new Label("NAO SELECIONADO");
+        lblNumExemplarID = new Label("0");
         lblNumExemplarID.setStyle("-fx-background-color: white;");
         layoutCentral.setConstraints(lblNumExemplarID, 5,5);
 
@@ -142,7 +145,7 @@ public class TelaCadEmprestimo {
         btnPesqExemplar.minWidth(200);
         layoutCentral.setConstraints(btnPesqExemplar, 1,6);
         btnPesqExemplar.setOnAction(e->{
-            exemplarTela = exemplaresCtr.pesqCtrlExemplar(pesqExemplarEmprestimo());
+            exemplarTela = exemplaresCtr.pesquisaExemplarBD(pesqExemplarEmprestimo());
             txtExemplarTitulo.setText(exemplarTela.getLivro().getTitulo());
             txtExemplarSubTitulo.setText(exemplarTela.getLivro().getSubTitulo());
             lblNumExemplarID.setText(Integer.toString(exemplarTela.getIdExemplar()));
@@ -168,8 +171,9 @@ public class TelaCadEmprestimo {
 
         Emprestimo emprestimo = new Emprestimo();
 
-        emprestimo.setCliente(clienteTela);
-        emprestimo.setExemplar(exemplarTela);
+        emprestimo.setIdCliente(Integer.parseInt(lblNumClienteID.getText()));
+        emprestimo.setIdExemplar(Integer.parseInt(lblNumExemplarID.getText()));
+        emprestimo.setIdEmprestimo(Integer.parseInt(txtID.getText()));
 
         if(txtStatus.getText() == "FINALIZADO"){
             emprestimo.setStatusEmprestimo(false);
@@ -177,14 +181,14 @@ public class TelaCadEmprestimo {
             emprestimo.setStatusEmprestimo(true);
         }
 
-        try{
-            Date formatDate = sdf.parse(txtDtEmprestimo.getText());
-            emprestimo.setDataEmprestimo(formatDate);
-            formatDate = sdf.parse(txtDevEfetiva.getText());
-            emprestimo.setDataDevEfetiva(formatDate);
-        }catch (ParseException e){
-            e.printStackTrace();
-        }
+//        try{
+//            Date formatDate = sdf.parse(txtDtEmprestimo.getText());
+//            emprestimo.setDataEmprestimo(formatDate);
+//            formatDate = sdf.parse(txtDevEfetiva.getText());
+//            emprestimo.setDataDevEfetiva(formatDate);
+//        }catch (ParseException e){
+//            e.printStackTrace();
+//        }
 
         return emprestimo;
     }
@@ -200,30 +204,40 @@ public class TelaCadEmprestimo {
 
     public void setTelaEmprestimo(Emprestimo emprestimo){
 
-        Date dataFormat;
-        String dataString;
+
 
         txtPesqCliente.setText("");
         txtPesqID.setText("");
 
         txtID.setText(Integer.toString(emprestimo.getIdEmprestimo()));
 
-        dataFormat = emprestimo.getDataEmprestimo();
-        dataString = dataFormat.toString();
-        txtDtEmprestimo.setText(dataString);
 
-        if(emprestimo.isStatusEmprestimo() == true) {
-            txtStatus.setText("ANDAMENTO");
-        }else{
-            txtStatus.setText("FINALIZADO");
+        Date dataFormat;
+        String dataString;
+
+        try {
+            dataFormat = emprestimo.getDataEmprestimo();
+            dataString = dataFormat.toString();
+            txtDtEmprestimo.setText(dataString);
+        } catch(Exception e) {
+
         }
+
+        txtStatus.setText(emprestimo.isStatusEmprestimo() ? "ANDAMENTO" : "FINALIZADO");
+
         txtCliente.setText(emprestimo.getCliente().getNome());
         txtClienteCPF.setText(emprestimo.getCliente().getCpf());
         lblNumClienteID.setText(Integer.toString(emprestimo.getCliente().getIdCliente()));
 
-        dataFormat = emprestimo.getDataDevEfetiva();
-        dataString = dataFormat.toString();
-        txtDevEfetiva.setText(dataString);
+
+        try {
+
+        } catch(Exception e) {
+            dataFormat = emprestimo.getDataDevEfetiva();
+            dataString = dataFormat.toString();
+            txtDevEfetiva.setText(dataString);
+        }
+
 
         txtExemplarTitulo.setText(emprestimo.getExemplar().getLivro().getTitulo());
         txtExemplarSubTitulo.setText(emprestimo.getExemplar().getLivro().getSubTitulo());

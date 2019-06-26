@@ -20,7 +20,7 @@ public class AutorDao {
         try {
 
             if (autor.getIdAutor() > 0) {
-                query = "UPDATE autores set nome=?, pais_origem=?, especialidade=? WHERE id=?";
+                query = "UPDATE autores set pais_origem=?, nome=?, especialidade=? WHERE id=?";
                 stmt = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
                 stmt.setInt(4, autor.getIdAutor());
 
@@ -109,6 +109,34 @@ public class AutorDao {
                 autor.setDataCriacao(rs.getDate("data_criacao"));
                 autor.setStatus(rs.getBoolean("status"));
             }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+
+        return autor;
+    }
+
+    //irá pesqisar um unico autor pelo id do mesmo
+    public Autor pesquisaAutorIdBD(int id){
+        Connection con = ConnectionFactory.getConnection();
+
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Autor autor = new Autor();
+
+        try {
+            stmt = con.prepareStatement("SELECT * FROM autores  WHERE id = ?");
+
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+
+            autor.setIdAutor(rs.getInt("id"));
+            autor.setPaisOrigem(rs.getString("pais_origem"));
+            autor.setNomeAutor(rs.getString("nome"));
+            autor.setEspecialidade(rs.getString("especialidade"));
 
         } catch (SQLException e) {
             e.printStackTrace();

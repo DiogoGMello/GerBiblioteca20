@@ -30,6 +30,21 @@ public class BtnLateralControler {
         return layoutPrincipal;
     }
 
+    public BorderPane setTelaInicial(){
+        TelaInicio telaInicio = new TelaInicio();
+
+        titulo.setText("EMPRESTIMO");
+        locTela = 2;
+        layoutTitulo.getChildren().add(titulo);
+        layoutPrincipal.setPadding(new Insets(40));
+        layoutPrincipal.setTop(layoutTitulo);
+        layoutPrincipal.setLeft(menuLateral.menuMontagem());
+        layoutPrincipal.setCenter(telaInicio.telaInicio());
+        layoutPrincipal.setBottom(botoesCrud.botaoInicial());
+
+        return layoutPrincipal;
+    }
+
     public BorderPane crudCliente(){
         TelaCadCliente telaCadCliente = new TelaCadCliente();
 
