@@ -70,7 +70,10 @@ public class TelaInicio {
 
         ObservableList<Emprestimo> produtoSelecionado;
 
-        Emprestimo emprestimo = table.getSelectionModel().getSelectedItem();
+        produtoSelecionado = table.getItems();
+        produtoSelecionado.
+
+        //produtoSelecionado = table.getSelectionModel().getSelectedItem();
 
         id = emprestimo.getIdEmprestimo();
 

@@ -61,10 +61,10 @@ public class BotoesInferiores {
         btnVerificar = new Button("Verificar Selecionado");
         btnVerificar.setMinWidth(100);
         btnVerificar.setOnAction(e->{
-            btnLateralControler.crudEmprestimo();
             Emprestimo emprestimo =
                     emprestimoDao.pesquisaEmprestimoIdBD(
                             telaInicio.itemSelecionadoId());
+            btnLateralControler.crudEmprestimo();
             telaCadEmprestimo.setTelaEmprestimo(emprestimo);
         });
 
